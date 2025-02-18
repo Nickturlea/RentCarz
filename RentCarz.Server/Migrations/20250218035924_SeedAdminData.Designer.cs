@@ -11,8 +11,8 @@ using RentCarz.Server.Data;
 namespace RentCarz.Server.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250209001205_InitialDbCreation")]
-    partial class InitialDbCreation
+    [Migration("20250218035924_SeedAdminData")]
+    partial class SeedAdminData
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -37,6 +37,14 @@ namespace RentCarz.Server.Migrations
                     b.HasKey("AdminId");
 
                     b.ToTable("Admins");
+
+                    b.HasData(
+                        new
+                        {
+                            AdminId = 1,
+                            AdminPassword = "pass123",
+                            AdminUsername = "admin"
+                        });
                 });
 
             modelBuilder.Entity("RentCarz.Server.Models.Car", b =>
@@ -103,23 +111,18 @@ namespace RentCarz.Server.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Address")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("FullName")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Password")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("PhoneNumber")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Username")
@@ -187,6 +190,32 @@ namespace RentCarz.Server.Migrations
                         .IsUnique();
 
                     b.ToTable("Payments");
+                });
+
+            modelBuilder.Entity("RentCarz.Server.Models.RefreshToken", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("Expires")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("IsRevoked")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("MemberId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Token")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MemberId");
+
+                    b.ToTable("RefreshTokens");
                 });
 
             modelBuilder.Entity("RentCarz.Server.Models.Reservation", b =>
@@ -277,6 +306,17 @@ namespace RentCarz.Server.Migrations
                     b.Navigation("Reservation");
                 });
 
+            modelBuilder.Entity("RentCarz.Server.Models.RefreshToken", b =>
+                {
+                    b.HasOne("RentCarz.Server.Models.Member", "Member")
+                        .WithMany("RefreshTokens")
+                        .HasForeignKey("MemberId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Member");
+                });
+
             modelBuilder.Entity("RentCarz.Server.Models.Reservation", b =>
                 {
                     b.HasOne("RentCarz.Server.Models.Car", "Car")
@@ -324,10 +364,11 @@ namespace RentCarz.Server.Migrations
 
             modelBuilder.Entity("RentCarz.Server.Models.Member", b =>
                 {
+                    b.Navigation("RefreshTokens");
+
                     b.Navigation("Reservations");
 
-                    b.Navigation("Review")
-                        .IsRequired();
+                    b.Navigation("Review");
                 });
 
             modelBuilder.Entity("RentCarz.Server.Models.Reservation", b =>

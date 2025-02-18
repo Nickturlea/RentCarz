@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-get-started',
@@ -9,5 +11,10 @@ import { Component } from '@angular/core';
 })
 export class GetStartedComponent {
 
+  constructor(public authService: AuthService, private router: Router) {}
+
+  logout() {
+    this.authService.logout();
+  }
 }
 

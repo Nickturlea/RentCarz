@@ -33,6 +33,6 @@ namespace RentCarz.Server.Models
         [ForeignKey("AdminId")]
         public Admin Admin { get; set; }
 
-        public List<Reservation> Reservations { get; set; }
+        public ICollection<Reservation> Reservations { get; set; } = new List<Reservation>();
     }
 }

@@ -15,6 +15,6 @@ namespace RentCarz.Server.Models
         [Required]
         public string AdminPassword { get; set; }
 
-        public List<Car> Cars { get; set; }
+        public ICollection<Car> Cars { get; set; } = new List<Car>();
     }
 }

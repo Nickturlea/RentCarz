@@ -18,9 +18,25 @@ namespace RentCarz.Server.Data
 		public DbSet<Reservation> Reservations { get; set; }
 		public DbSet<Payment> Payments { get; set; }
 		public DbSet<Review> Reviews { get; set; }
+		public DbSet<RefreshToken> RefreshTokens { get; set; }
+
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
+
+			modelBuilder.Entity<Admin>().HasData(new Admin
+			{
+				AdminId = 1,
+				AdminUsername = "admin",
+				AdminPassword = "pass123"
+			});
+
+			modelBuilder.Entity<RefreshToken>()
+			   .HasOne(rt => rt.Member)
+			   .WithMany(m => m.RefreshTokens)
+			   .HasForeignKey(rt => rt.MemberId)
+			   .OnDelete(DeleteBehavior.Cascade);
+
 			modelBuilder.Entity<Reservation>()
 				.Property(r => r.Status)
 				.HasConversion<string>();

@@ -6,14 +6,14 @@
   height: 100%;
 }
 
-  .logo img {
-    height: 50px;
-    width: 100px;
-    border-radius: 25%;
-    border-style: solid;
-    border-width: 5px;
-    border-color: black;
-  }
+.logo img {
+  height: 50px;
+  width: 100px;
+  border-radius: 25%;
+  border-style: solid;
+  border-width: 5px;
+  border-color: black;
+}
 
 .navbar {
   display: flex;
@@ -36,26 +36,29 @@
   flex-grow: 1;
 }
 
-  .nav-links a {
-    text-decoration: none;
-    color: white;
-    font-size: 24px;
-    font-weight: bold;
-    transition: text-decoration 0.3s ease-in-out;
-  }
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  transition: text-decoration 0.3s ease-in-out;
+}
 
-    .nav-links a:hover {
-      text-decoration: underline;
-    }
+.nav-links a:hover {
+  text-decoration: underline;
+}
 
 .auth-buttons {
   position: absolute;
+  top: 50%;
   right: 20px;
+  transform: translateY(-50%);
   display: flex;
   gap: 10px;
 }
 
-.sign-in {
+.sign-in,
+.logout-btn {
   padding: 8px 15px;
   background-color: black;
   color: white;
@@ -64,10 +67,11 @@
   cursor: pointer;
 }
 
-  .sign-in:hover {
-    background-color: white;
-    color: black;
-  }
+.sign-in:hover,
+.logout-btn:hover {
+  background-color: white;
+  color: black;
+}
 
 .fleet-section {
   text-align: center;
@@ -75,10 +79,10 @@
   color: black;
 }
 
-  .fleet-section h1 {
-    font-size: 36px;
-    font-weight: bold;
-  }
+.fleet-section h1 {
+  font-size: 36px;
+  font-weight: bold;
+}
 
 .reserve-section {
   width: 100%;
@@ -98,18 +102,6 @@
   transition: background-color 0.3s ease-in-out;
 }
 
-  .reserve-btn:hover {
-    background-color: green;
-  }
-
-
-.fleet-section {
-  text-align: center;
-  margin-top: 50px;
-  color: black; 
+.reserve-btn:hover {
+  background-color: green;
 }
-
-  .fleet-section h1 {
-    font-size: 36px;
-    font-weight: bold;
-  }
