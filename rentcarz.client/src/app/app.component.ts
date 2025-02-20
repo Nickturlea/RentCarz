@@ -1,38 +1,22 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-
-interface WeatherForecast {
-  date: string;
-  temperatureC: number;
-  temperatureF: number;
-  summary: string;
-}
-
+import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router'; 
+import { AuthService } from './services/auth.service';
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
   standalone: false,
-  styleUrl: './app.component.css'
+  template: '<router-outlet></router-outlet>', 
+  styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
-  public forecasts: WeatherForecast[] = [];
-
-  constructor(private http: HttpClient) {}
+export class AppComponent {
+  constructor(private authService: AuthService) {}
 
   ngOnInit() {
-    this.getForecasts();
+    const token = this.authService.getToken();
+    if (token) {
+      console.log("Token exists, starting refresh.");
+      this.authService.startTokenRefresh();
+    } else {
+      console.log("No token found, not starting refresh.");
+    }
   }
-
-  getForecasts() {
-    this.http.get<WeatherForecast[]>('/weatherforecast').subscribe(
-      (result) => {
-        this.forecasts = result;
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
-  }
-
-  title = 'rentcarz.client';
-}
+ }

@@ -1,0 +1,15 @@
+<nav class="navbar">
+  <div class="logo">
+    <img src="assets/logo-rentcarz.jpg" alt="Rentcarz Logo">
+  </div>
+  <div class="nav-links">
+    <a routerLink="/">Home</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+  </div>
+  
+  <div class="auth-buttons">
+    <button *ngIf="!authService.getToken()" class="sign-in" routerLink="/login">Sign Up / Login</button>
+    <button *ngIf="authService.getToken()" (click)="logout()" class="logout-btn">Logout</button>
+  </div>
+</nav>
