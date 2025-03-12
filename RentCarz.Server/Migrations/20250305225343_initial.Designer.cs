@@ -11,8 +11,8 @@ using RentCarz.Server.Data;
 namespace RentCarz.Server.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250218035924_SeedAdminData")]
-    partial class SeedAdminData
+    [Migration("20250305225343_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
