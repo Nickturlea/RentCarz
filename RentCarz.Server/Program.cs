@@ -34,6 +34,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddScoped<MemberService>();
 builder.Services.AddScoped<Authentication>();
 builder.Services.AddScoped<AdminService>();
+builder.Services.AddScoped<CarService>();
+
 
 //authentication
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
