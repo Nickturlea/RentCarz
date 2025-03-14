@@ -1,0 +1,38 @@
+<div class="admin-panel">
+    <h2>Add a New Car</h2>
+  
+    <form [formGroup]="carForm" (ngSubmit)="onSubmit()">
+      <label>Make:</label>
+      <input type="text" formControlName="make" required>
+  
+      <label>Model:</label>
+      <input type="text" formControlName="model" required>
+  
+      <label>Year:</label>
+      <input type="number" formControlName="year" required>
+  
+      <label>Price Per Day ($):</label>
+      <input type="number" formControlName="pricePerDay" required>
+  
+      <label>Availability:</label>
+      <select formControlName="availability">
+        <option [value]="true">Available</option>
+        <option [value]="false">Not Available</option>
+      </select>
+  
+      <label>Colour:</label>
+      <input type="text" formControlName="colour" required>
+  
+      <label>Car Type ID:</label>
+      <input type="number" formControlName="carTypeId" required>
+  
+      <label>Admin ID:</label>
+      <input type="number" formControlName="adminId" required>
+  
+      <button type="submit" [disabled]="carForm.invalid">Add Car</button>
+    </form>
+  
+    <p class="success-message" *ngIf="successMessage">{{ successMessage }}</p>
+    <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
+  </div>
+  
