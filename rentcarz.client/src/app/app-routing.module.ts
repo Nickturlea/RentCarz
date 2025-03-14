@@ -9,6 +9,7 @@ import { ReservationComponent } from './reservation/reservation.component';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
+import { AdminLoginComponent } from './admin-login/admin-login.component';
 
 const routes: Routes = [
   { path: '', component: GetStartedComponent },
@@ -21,6 +22,10 @@ const routes: Routes = [
   { path: 'contact', component: ContactComponent },
   { path: 'admin', component: AdminPanelComponent }
 
+  { path: '', component: GetStartedComponent } ,
+    { path: 'signup', component: SignupComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'admin-login', component: AdminLoginComponent },
 ];
 
 @NgModule({

@@ -14,6 +14,7 @@ import { ReservationComponent } from './reservation/reservation.component';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
+import { AdminLoginComponent } from './admin-login/admin-login.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { ContactComponent } from './contact/contact.component';
     AdminPanelComponent,
     AboutComponent,
     ContactComponent,
+    AdminLoginComponent,
   ],
   imports: [
     BrowserModule,
