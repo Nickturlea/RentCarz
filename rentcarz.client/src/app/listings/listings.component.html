@@ -5,7 +5,7 @@
       <h3>{{ car.make }} {{ car.model }} ({{ car.year }})</h3>
       <p>Color: {{ car.colour }}</p>
       <p>Price per Day: ${{ car.pricePerDay }}</p>
-      <button>Reserve Now</button>
+      <button (click)="passCarId(car.carId)">Reserve Now</button>
     </div>
   </div>
   
