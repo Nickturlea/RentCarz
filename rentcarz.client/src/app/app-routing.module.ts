@@ -20,12 +20,8 @@ const routes: Routes = [
   { path: 'reservation', component: ReservationComponent},
   { path: 'about', component: AboutComponent },
   { path: 'contact', component: ContactComponent },
-  { path: 'admin', component: AdminPanelComponent }
-
-  { path: '', component: GetStartedComponent } ,
-    { path: 'signup', component: SignupComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'admin-login', component: AdminLoginComponent },
+  { path: 'admin', component: AdminPanelComponent },
+  { path: 'admin-login', component: AdminLoginComponent }
 ];
 
 @NgModule({
