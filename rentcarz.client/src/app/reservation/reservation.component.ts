@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ReservationService } from '../services/reservation.service';
 import { Car } from '../models/car.model'; 
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-reservation',
@@ -14,6 +15,7 @@ import { Car } from '../models/car.model';
 export class ReservationComponent {
   reservationForm: FormGroup;
   cars: Car[] = []; // Holds the list of cars
+  today: String;
   //car : Car;
   errorMessage: string = '';
   /*
@@ -23,18 +25,25 @@ export class ReservationComponent {
   carColor = "";
   */
 
-constructor(private reservationService: ReservationService, private fb: FormBuilder, private router: Router) {
+constructor(private reservationService: ReservationService, private authService: AuthService, private fb: FormBuilder, private router: Router) {
     this.reservationForm = this.fb.group({
       startDate: [''],
+      startTime: [''],
       endDate: [''],
+      endTime: [''],
     });
+    this.today = new Date().toISOString().split('T')[0];
   } 
 
 
 
  ngOnInit(): void {
   this.getCar();
-  console.log("ngOnInit");
+  this.getUser();
+}
+
+getUser(): void{
+  this.authService
 }
 
 getCar(): void {
@@ -44,7 +53,9 @@ getCar(): void {
   });
 }
 
+
  onSubmit(){
+  
   this.router.navigate(['/listings']);
  }
 

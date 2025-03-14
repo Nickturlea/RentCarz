@@ -9,7 +9,7 @@ import { Car } from '../models/car.model';
 export class ReservationService {
   //private apiUrl = 'http://localhost:5240/api/reservation'; 
   //temp url until backend service fixed
-  private apiUrl = 'http://localhost:5240/api/cars';
+  private apiUrl = 'http://localhost:5240/api/reservation';
 
   constructor(private http: HttpClient) {}
   
