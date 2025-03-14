@@ -6,6 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { ListingsComponent } from './listings/listings.component';
 import { CartComponent } from './cart/cart.component';
 import { ReservationComponent } from './reservation/reservation.component';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 
 const routes: Routes = [
   { path: '', component: GetStartedComponent },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'listings', component: ListingsComponent },
   { path: 'cart', component: CartComponent},
   { path: 'reservation', component: ReservationComponent},
+  { path: 'admin', component: AdminPanelComponent }
 ];
 
 @NgModule({

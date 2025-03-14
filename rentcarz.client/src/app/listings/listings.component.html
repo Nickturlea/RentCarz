@@ -1,11 +1,16 @@
 <div class="listings-container">
-    <h2>Available Cars</h2>
-    <div *ngIf="cars.length === 0">No cars available at the moment.</div>
-    <div *ngFor="let car of cars" class="car-card">
-      <h3>{{ car.make }} {{ car.model }} ({{ car.year }})</h3>
+  <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+
+  <div class="listings-grid">
+    <div *ngFor="let car of cars" class="listing-item">
+      <h3>{{ car.make }} {{ car.model }}</h3>
+      <p>Year: {{ car.year }}</p>
+      <p>Price Per Day: ${{ car.pricePerDay }}</p>
       <p>Color: {{ car.colour }}</p>
       <p>Price per Day: ${{ car.pricePerDay }}</p>
       <button (click)="passCarId(car.carId)">Reserve Now</button>
+      <p *ngIf="car.availability">Available</p>
+      <p *ngIf="!car.availability" style="color: red;">Not Available</p>
     </div>
   </div>
-  
+</div>

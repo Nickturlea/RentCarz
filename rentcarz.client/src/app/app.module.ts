@@ -11,6 +11,7 @@ import { LoginComponent } from './login/login.component';
 import { ListingsComponent } from './listings/listings.component';
 import { CartComponent } from './cart/cart.component';
 import { ReservationComponent } from './reservation/reservation.component';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { ReservationComponent } from './reservation/reservation.component';
     ListingsComponent,
     CartComponent,
     ReservationComponent,
+    AdminPanelComponent,
   ],
   imports: [
     BrowserModule,

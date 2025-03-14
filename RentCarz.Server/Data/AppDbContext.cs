@@ -31,6 +31,19 @@ namespace RentCarz.Server.Data
 				AdminPassword = "pass123"
 			});
 
+			modelBuilder.Entity<CarType>().HasData(
+				new CarType { CarTypeId = 1, Type = "Sedan" },
+				new CarType { CarTypeId = 2, Type = "SUV" },
+				new CarType { CarTypeId = 3, Type = "Truck" },
+				new CarType { CarTypeId = 4, Type = "Convertible" },
+				new CarType { CarTypeId = 5, Type = "Electric" },
+				new CarType { CarTypeId = 6, Type = "Coupe" },
+				new CarType { CarTypeId = 7, Type = "Hatchback" },
+				new CarType { CarTypeId = 8, Type = "Minivan" },
+				new CarType { CarTypeId = 9, Type = "Luxury" },
+				new CarType { CarTypeId = 10, Type = "Sports Car" }
+			);
+
 			modelBuilder.Entity<RefreshToken>()
 			   .HasOne(rt => rt.Member)
 			   .WithMany(m => m.RefreshTokens)

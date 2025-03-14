@@ -3,10 +3,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace RentCarz.Server.Migrations
 {
     /// <inheritdoc />
-    public partial class fixValidation : Migration
+    public partial class initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -195,6 +197,23 @@ namespace RentCarz.Server.Migrations
                 table: "Admins",
                 columns: new[] { "AdminId", "AdminPassword", "AdminUsername" },
                 values: new object[] { 1, "pass123", "admin" });
+
+            migrationBuilder.InsertData(
+                table: "CarTypes",
+                columns: new[] { "CarTypeId", "Type" },
+                values: new object[,]
+                {
+                    { 1, "Sedan" },
+                    { 2, "SUV" },
+                    { 3, "Truck" },
+                    { 4, "Convertible" },
+                    { 5, "Electric" },
+                    { 6, "Coupe" },
+                    { 7, "Hatchback" },
+                    { 8, "Minivan" },
+                    { 9, "Luxury" },
+                    { 10, "Sports Car" }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Cars_AdminId",
