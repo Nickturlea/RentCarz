@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
   //api url
-  private apiUrl = 'http://localhost:5240/api/members';
+  private apiUrl = 'http://localhost:5240/api';
   //used for reoccuring method after the time of 15min for the refresh token to work
   private refreshSubscription: Subscription | null = null;
 
@@ -17,18 +17,28 @@ export class AuthService {
 
   //signup auth link to backend
   signup(signupData: { username: string; email: string; password: string; fullName: string; phoneNumber: string; address: string }): Observable<any> {
-    return this.http.post(`${this.apiUrl}/signup`, signupData);
+    return this.http.post(`${this.apiUrl}/members/signup`, signupData);
   }
 
   //login auth to link backend
   login(loginData: { username: string; password: string }): Observable<any> {
     //pipe used to concat the username and password with the storedTokens and the refresh
-    return this.http.post(`${this.apiUrl}/login`, loginData).pipe(
+    return this.http.post(`${this.apiUrl}/members/login`, loginData).pipe(
       //tap used to allow to store and modify data not in the observable
       tap((response: any) => {
         this.storeTokens(response.token, response.refreshToken);
         console.log("Login successful and tokens stored.");
         //used to start token refresh
+        this.startTokenRefresh();
+      })
+    );
+  }
+
+  adminLogin(loginData: { adminUsername: string; adminPassword: string }): Observable<any> {
+    return this.http.post(`${this.apiUrl}/admins/adminLogin`, loginData).pipe(
+      tap((response: any) => {
+        this.storeTokens(response.token, response.refreshToken);
+        console.log("Admin login successful, tokens stored.");
         this.startTokenRefresh();
       })
     );
@@ -48,7 +58,7 @@ export class AuthService {
     }
 
     //refresh url
-    return this.http.post(`${this.apiUrl}/refresh`, { memberId, token: refreshToken }).pipe(
+    return this.http.post(`${this.apiUrl}/members/refresh`, { memberId, token: refreshToken }).pipe(
       tap((response: any) => {
         this.storeTokens(response.token, response.refreshToken);
         console.log("Token refreshed successfully.");

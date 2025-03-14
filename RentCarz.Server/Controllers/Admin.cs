@@ -20,6 +20,7 @@ namespace RentCarz.Server.Controllers
         [HttpPost("adminLogin")]
         public async Task<IActionResult> Login([FromBody] Admin request)
         {
+            Console.WriteLine(request.AdminUsername);
             try
             {
                 if (string.IsNullOrWhiteSpace(request.AdminUsername) || string.IsNullOrWhiteSpace(request.AdminPassword))
