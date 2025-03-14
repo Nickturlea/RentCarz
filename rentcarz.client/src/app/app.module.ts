@@ -9,6 +9,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from './services/auth.service';
 import { LoginComponent } from './login/login.component';
 import { ListingsComponent } from './listings/listings.component';
+import { CartComponent } from './cart/cart.component';
+import { ReservationComponent } from './reservation/reservation.component';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
@@ -20,6 +22,8 @@ import { ContactComponent } from './contact/contact.component';
     SignupComponent,
     LoginComponent,
     ListingsComponent,
+    CartComponent,
+    ReservationComponent,
     AdminPanelComponent,
     AboutComponent,
     ContactComponent,

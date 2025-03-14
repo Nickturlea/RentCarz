@@ -7,6 +7,8 @@
       <p>Year: {{ car.year }}</p>
       <p>Price Per Day: ${{ car.pricePerDay }}</p>
       <p>Color: {{ car.colour }}</p>
+      <p>Price per Day: ${{ car.pricePerDay }}</p>
+      <button (click)="passCarId(car.carId)">Reserve Now</button>
       <p *ngIf="car.availability">Available</p>
       <p *ngIf="!car.availability" style="color: red;">Not Available</p>
     </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CarService } from '../services/car.service';
 import { Car } from '../models/car.model'; 
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-listings',
@@ -12,7 +13,7 @@ export class ListingsComponent implements OnInit {
   cars: Car[] = []; // Holds the list of cars
   errorMessage: string = '';
 
-  constructor(private carService: CarService) {}
+  constructor(private carService: CarService, private router: Router) {}
 
   ngOnInit(): void {
     this.loadCars();
@@ -24,5 +25,10 @@ export class ListingsComponent implements OnInit {
       error: (err: any) => this.errorMessage = 'Failed to load cars. Please try again later.'
     });
   }
+
+ passCarId(id: any){
+    this.router.navigate(['/reservation'], { state: {data: id} });
+  }
+
 }
 

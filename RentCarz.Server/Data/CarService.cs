@@ -19,6 +19,25 @@ public class CarService
             .ToListAsync();
     }
 
+
+    /*temp until reservation service works
+    // Get one car
+    public async Task<Car> GetCarByID(int id){
+        var car = await _context.Cars.FindAsync(1);
+        if(car == null){
+            throw new Exception("Car not found or unavailable.");
+        }
+        return car;
+    }*/
+
+    public async Task<List<Car>> getCarById(int id)
+    {
+        return await _context.Cars
+            .Where(c => c.Availability == true && c.CarId == id)
+            .ToListAsync();
+    }
+    
+
     // Make a reservation
     public async Task<Reservation> MakeReservation(int memberId, int carId, DateTime startDate, DateTime endDate)
     {

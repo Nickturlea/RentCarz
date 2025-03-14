@@ -35,7 +35,7 @@ builder.Services.AddScoped<MemberService>();
 builder.Services.AddScoped<Authentication>();
 builder.Services.AddScoped<AdminService>();
 builder.Services.AddScoped<CarService>();
-
+builder.Services.AddScoped<ReservationService>();
 
 //authentication
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
