@@ -57,13 +57,15 @@ namespace RentCarz.Server.Data
 				.HasOne(c => c.CarType)
 				.WithMany(ct => ct.Cars)
 				.HasForeignKey(c => c.CarTypeId)
-				.OnDelete(DeleteBehavior.Cascade);
+				.OnDelete(DeleteBehavior.SetNull)
+				.IsRequired(false);
 
 			modelBuilder.Entity<Car>()
 				.HasOne(c => c.Admin)
 				.WithMany(a => a.Cars)
 				.HasForeignKey(c => c.AdminId)
-				.OnDelete(DeleteBehavior.Cascade);
+				.OnDelete(DeleteBehavior.SetNull)
+				.IsRequired(false);
 
 			modelBuilder.Entity<Reservation>()
 				.HasOne(r => r.Member)

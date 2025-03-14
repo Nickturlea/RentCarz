@@ -3,6 +3,7 @@ using RentCarz.Server.Services;
 using RentCarz.Server.Models;
 using System;
 using System.Threading.Tasks;
+using System.Text.Json;
 
 namespace RentCarz.Server.Controllers
 {
@@ -41,5 +42,36 @@ namespace RentCarz.Server.Controllers
                 return StatusCode(500, new { message = $"Error logging in: {ex.Message}" });
             }
         }
+
+[HttpPost("addCar")]
+public async Task<IActionResult> AddCar([FromBody] Car newCar)
+{
+    Console.WriteLine($"Received Data: {JsonSerializer.Serialize(newCar)}");
+
+    ModelState.Clear(); // Temporarily disable validation
+
+    if (!ModelState.IsValid)
+    {
+        return BadRequest(ModelState);
+    }
+
+    if (newCar.AdminId == null)
+    {
+        return BadRequest(new { message = "AdminId is required." });
+    }
+
+    try
+    {
+        var addedCar = await _adminService.AddCar(newCar.AdminId.Value, newCar);
+        return Ok(addedCar);
+    }
+    catch (Exception ex)
+    {
+        return BadRequest(new { message = ex.Message });
+    }
+}
+
+
+
     }
 }

@@ -32,7 +32,7 @@ namespace RentCarz.Server.Services
         // add car
         public async Task<Car> AddCar(int adminId, Car newCar)
         {
-            //check if the Admin exists
+/*             //check if the Admin exists
             var admin = await _context.Admins.FindAsync(adminId);
             if (admin == null)
             {
@@ -44,7 +44,7 @@ namespace RentCarz.Server.Services
             if (carType == null)
             {
                 throw new Exception("Car type not found.");
-            }
+            } */
 
             //assign the admin to the new car
             newCar.AdminId = adminId;
