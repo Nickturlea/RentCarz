@@ -5,13 +5,18 @@ import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
 import { ListingsComponent } from './listings/listings.component';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
+import { AboutComponent } from './about/about.component';
+import { ContactComponent } from './contact/contact.component';
 
 const routes: Routes = [
   { path: '', component: GetStartedComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'login', component: LoginComponent },
   { path: 'listings', component: ListingsComponent },
+  { path: 'about', component: AboutComponent },
+  { path: 'contact', component: ContactComponent },
   { path: 'admin', component: AdminPanelComponent }
+
 ];
 
 @NgModule({

@@ -10,6 +10,8 @@ import { AuthService } from './services/auth.service';
 import { LoginComponent } from './login/login.component';
 import { ListingsComponent } from './listings/listings.component';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
+import { AboutComponent } from './about/about.component';
+import { ContactComponent } from './contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';
     LoginComponent,
     ListingsComponent,
     AdminPanelComponent,
+    AboutComponent,
+    ContactComponent,
   ],
   imports: [
     BrowserModule,
