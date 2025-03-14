@@ -55,9 +55,14 @@ public async Task<IActionResult> AddCar([FromBody] Car newCar)
         return BadRequest(ModelState);
     }
 
+    if (newCar.AdminId == null)
+    {
+        return BadRequest(new { message = "AdminId is required." });
+    }
+
     try
     {
-        var addedCar = await _adminService.AddCar(newCar.AdminId, newCar);
+        var addedCar = await _adminService.AddCar(newCar.AdminId.Value, newCar);
         return Ok(addedCar);
     }
     catch (Exception ex)
@@ -65,6 +70,7 @@ public async Task<IActionResult> AddCar([FromBody] Car newCar)
         return BadRequest(new { message = ex.Message });
     }
 }
+
 
 
     }

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace RentCarz.Server.Migrations
 {
     /// <inheritdoc />
-    public partial class initial : Migration
+    public partial class fixValidation : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -68,8 +68,8 @@ namespace RentCarz.Server.Migrations
                     PricePerDay = table.Column<double>(type: "REAL", nullable: false),
                     Availability = table.Column<bool>(type: "INTEGER", nullable: false),
                     Colour = table.Column<string>(type: "TEXT", nullable: false),
-                    CarTypeId = table.Column<int>(type: "INTEGER", nullable: false),
-                    AdminId = table.Column<int>(type: "INTEGER", nullable: false)
+                    CarTypeId = table.Column<int>(type: "INTEGER", nullable: true),
+                    AdminId = table.Column<int>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -79,13 +79,13 @@ namespace RentCarz.Server.Migrations
                         column: x => x.AdminId,
                         principalTable: "Admins",
                         principalColumn: "AdminId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.SetNull);
                     table.ForeignKey(
                         name: "FK_Cars_CarTypes_CarTypeId",
                         column: x => x.CarTypeId,
                         principalTable: "CarTypes",
                         principalColumn: "CarTypeId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.SetNull);
                 });
 
             migrationBuilder.CreateTable(

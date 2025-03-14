@@ -7,12 +7,12 @@ import { Car } from '../models/car.model';
   providedIn: 'root'
 })
 export class CarService {
-  private apiUrl = 'http://localhost:5240/api/cars/available-cars'; // Update this to match your backend
+  private apiUrl = 'http://localhost:5240/api/cars'; 
 
   constructor(private http: HttpClient) {}
 
   // Fetch available cars from API
   getAvailableCars(): Observable<Car[]> {
-    return this.http.get<Car[]>(`${this.apiUrl}/available`);
+    return this.http.get<Car[]>(`${this.apiUrl}/available-cars`);
   }
 }

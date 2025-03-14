@@ -50,13 +50,13 @@ namespace RentCarz.Server.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("AdminId")
+                    b.Property<int?>("AdminId")
                         .HasColumnType("INTEGER");
 
                     b.Property<bool>("Availability")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("CarTypeId")
+                    b.Property<int?>("CarTypeId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Colour")
@@ -278,14 +278,12 @@ namespace RentCarz.Server.Migrations
                     b.HasOne("RentCarz.Server.Models.Admin", "Admin")
                         .WithMany("Cars")
                         .HasForeignKey("AdminId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.HasOne("RentCarz.Server.Models.CarType", "CarType")
                         .WithMany("Cars")
                         .HasForeignKey("CarTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.Navigation("Admin");
 

@@ -19,27 +19,6 @@ public class CarController : ControllerBase
         return Ok(cars);
     }
 
-    // POST: api/cars/reserve
-    [HttpPost("reserve")]
-    public async Task<IActionResult> MakeReservation([FromBody] ReservationRequest request)
-    {
-        try
-        {
-            var reservation = await _carService.MakeReservation(request.MemberId, request.CarId, request.StartDate, request.EndDate);
-            return Ok(reservation);
-        }
-        catch (Exception ex)
-        {
-            return BadRequest(new { message = ex.Message });
-        }
-    }
+
 }
 
-// DTO for reservation request
-public class ReservationRequest
-{
-    public int MemberId { get; set; }
-    public int CarId { get; set; }
-    public DateTime StartDate { get; set; }
-    public DateTime EndDate { get; set; }
-}

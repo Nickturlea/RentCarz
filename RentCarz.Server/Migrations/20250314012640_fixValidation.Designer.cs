@@ -11,8 +11,8 @@ using RentCarz.Server.Data;
 namespace RentCarz.Server.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250305225343_initial")]
-    partial class initial
+    [Migration("20250314012640_fixValidation")]
+    partial class fixValidation
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -53,13 +53,13 @@ namespace RentCarz.Server.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("AdminId")
+                    b.Property<int?>("AdminId")
                         .HasColumnType("INTEGER");
 
                     b.Property<bool>("Availability")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("CarTypeId")
+                    b.Property<int?>("CarTypeId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Colour")
@@ -281,14 +281,12 @@ namespace RentCarz.Server.Migrations
                     b.HasOne("RentCarz.Server.Models.Admin", "Admin")
                         .WithMany("Cars")
                         .HasForeignKey("AdminId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.HasOne("RentCarz.Server.Models.CarType", "CarType")
                         .WithMany("Cars")
                         .HasForeignKey("CarTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.Navigation("Admin");
 

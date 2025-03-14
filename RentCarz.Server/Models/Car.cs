@@ -25,13 +25,13 @@ namespace RentCarz.Server.Models
         [Required]
         public string Colour { get; set; }
 
-        public int CarTypeId { get; set; }
+        public int? CarTypeId { get; set; }
         [ForeignKey("CarTypeId")]
-        public CarType CarType { get; set; }
+        public CarType? CarType { get; set; }
 
-        public int AdminId { get; set; }
+        public int? AdminId { get; set; }
         [ForeignKey("AdminId")]
-        public Admin Admin { get; set; }
+        public Admin? Admin { get; set; }
 
         public ICollection<Reservation> Reservations { get; set; } = new List<Reservation>();
     }
