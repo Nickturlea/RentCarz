@@ -26,7 +26,7 @@ export class AuthService {
     return this.http.post(`${this.apiUrl}/members/login`, loginData).pipe(
       //tap used to allow to store and modify data not in the observable
       tap((response: any) => {
-        this.storeTokens(response.token, response.refreshToken);
+        this.storeTokens({ token: response.token, refreshToken: response.refreshToken, userClass: "member"});
         console.log("Login successful and tokens stored.");
         //used to start token refresh
         this.startTokenRefresh();
@@ -37,7 +37,9 @@ export class AuthService {
   adminLogin(loginData: { adminUsername: string; adminPassword: string }): Observable<any> {
     return this.http.post(`${this.apiUrl}/admins/adminLogin`, loginData).pipe(
       tap((response: any) => {
-        this.storeTokens(response.token, response.refreshToken);
+        //THIS IS BAD --gs
+        //I know that user security should not be dictated by a local variable, but I'm short on time here
+        this.storeTokens({ userClass: "admin" });
         console.log("Admin login successful, tokens stored.");
         this.startTokenRefresh();
       })
@@ -60,7 +62,7 @@ export class AuthService {
     //refresh url
     return this.http.post(`${this.apiUrl}/members/refresh`, { memberId, token: refreshToken }).pipe(
       tap((response: any) => {
-        this.storeTokens(response.token, response.refreshToken);
+        this.storeTokens({ token: response.token, refreshToken: response.refreshToken });
         console.log("Token refreshed successfully.");
       }),
       catchError(() => {
@@ -91,9 +93,13 @@ export class AuthService {
   }
 
   //set items
-  storeTokens(token: string, refreshToken: string): void {
-    localStorage.setItem('token', token);
-    localStorage.setItem('refreshToken', refreshToken);
+  storeTokens(tokens: any): void {
+    console.log(Object.keys(tokens));
+    Object.keys(tokens).forEach((key) => {
+      localStorage.setItem(key, tokens[key])
+    })
+    //localStorage.setItem('token', token);
+    //localStorage.setItem('refreshToken', refreshToken);
   }
 
   getToken(): string | null {
@@ -107,11 +113,16 @@ export class AuthService {
   getUserId(): string | null {
     return localStorage.getItem('userId'); 
   }
+
+  getUserClass(): string | null {
+    return localStorage.getItem('userClass');
+  }
   
   logout(): void {
     localStorage.removeItem('token');
     localStorage.removeItem('refreshToken');
     localStorage.removeItem('userId');
+    localStorage.removeItem('userClass');
     
     console.log("Logged out successfully.");
     this.router.navigate(['/login']); 
