@@ -12,11 +12,15 @@ namespace RentCarz.Server.Models
 
         public int MemberId { get; set; }
         [ForeignKey("MemberId")]
+        /*
         public Member Member { get; set; }
+        */
 
         public int CarId { get; set; }
         [ForeignKey("CarId")]
+        /*
         public Car Car { get; set; }
+        */
 
         [Required]
         public DateTime StartDate { get; set; }
@@ -35,7 +39,8 @@ namespace RentCarz.Server.Models
             Canceled
         }
 
-
+        /*
         public Payment Payment { get; set; }
+        */
     }
 }

@@ -30,17 +30,17 @@ public class ReservationService
     
 
     // Make a reservation
-    public async Task<Reservation> MakeReservation(int memberId, int carId, DateTime startDate, DateTime endDate)
+    public async Task<Reservation> MakeReservation(int MemberId, int CarId, DateTime StartDate, DateTime EndDate)
     {
         // Check if the car exists and is available
-        var car = await _context.Cars.FindAsync(carId);
+        var car = await _context.Cars.FindAsync(CarId);
         if (car == null || !car.Availability)
         {
             throw new Exception("Car not found or unavailable.");
         }
 
         // Check if the member exists
-        var member = await _context.Members.FindAsync(memberId);
+        var member = await _context.Members.FindAsync(MemberId);
         if (member == null)
         {
             throw new Exception("Member not found.");
@@ -49,10 +49,10 @@ public class ReservationService
         // Create the reservation
         var reservation = new Reservation
         {
-            MemberId = memberId,
-            CarId = carId,
-            StartDate = startDate,
-            EndDate = endDate,
+            MemberId = MemberId,
+            CarId = CarId,
+            StartDate = StartDate,
+            EndDate = EndDate,
             Status = 0
         };
 

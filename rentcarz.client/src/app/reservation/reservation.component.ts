@@ -16,21 +16,13 @@ export class ReservationComponent {
   reservationForm: FormGroup;
   cars: Car[] = []; // Holds the list of cars
   today: String;
-  //car : Car;
   errorMessage: string = '';
-  /*
-  carMake = "";
-  carModel = "";
-  carYear = "";
-  carColor = "";
-  */
+  userId: string | null = "";
 
 constructor(private reservationService: ReservationService, private authService: AuthService, private fb: FormBuilder, private router: Router) {
     this.reservationForm = this.fb.group({
       startDate: [''],
-      startTime: [''],
       endDate: [''],
-      endTime: [''],
     });
     this.today = new Date().toISOString().split('T')[0];
   } 
@@ -40,10 +32,14 @@ constructor(private reservationService: ReservationService, private authService:
  ngOnInit(): void {
   this.getCar();
   this.getUser();
+  this.reservationForm.setValue({
+    startDate: `${this.today}T06:00`, 
+    endDate: `${this.today}T06:00`
+  });
 }
 
 getUser(): void{
-  this.authService
+  this.userId = this.authService.getUserId();
 }
 
 getCar(): void {
@@ -55,8 +51,27 @@ getCar(): void {
 
 
  onSubmit(){
-  
-  this.router.navigate(['/listings']);
+  var user = Number(this.userId);
+  console.log(this.reservationForm.value.startDate);
+
+  const reservationData = {
+    MemberId: user,
+    CarId: this.cars[0].carId,
+    StartDate: this.reservationForm.value.startDate,
+    EndDate: this.reservationForm.value.endDate,
+    Status: 0
+  }
+
+  this.reservationService.reserve(reservationData).subscribe({
+    next: (response) => {
+      console.log('Reservation successful', response);
+      this.router.navigate(['/listings']);
+    },
+    error: (error) => {
+      console.error('Reservation failed', error);
+      this.errorMessage = error.error?.message || "Reservation failed. Please try again.";
+    }
+  });
  }
 
  goBack() {

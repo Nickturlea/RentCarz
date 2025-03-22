@@ -26,7 +26,7 @@ export class AuthService {
     return this.http.post(`${this.apiUrl}/login`, loginData).pipe(
       //tap used to allow to store and modify data not in the observable
       tap((response: any) => {
-        this.storeTokens(response.token, response.refreshToken);
+        this.storeTokens({ token: response.token, refreshToken: response.refreshToken, userClass: "member", userId: response.userId});
         console.log("Login successful and tokens stored.");
         //used to start token refresh
         this.startTokenRefresh();
@@ -50,8 +50,9 @@ export class AuthService {
     //refresh url
     return this.http.post(`${this.apiUrl}/refresh`, { memberId, token: refreshToken }).pipe(
       tap((response: any) => {
-        this.storeTokens(response.token, response.refreshToken);
-        console.log("Token refreshed successfully.");
+        this.storeTokens({ userClass: "admin" });
+        console.log("Admin login successful, tokens stored.");
+        this.startTokenRefresh();
       }),
       catchError(() => {
         console.warn("Token refresh failed. Logging out.");
@@ -81,9 +82,11 @@ export class AuthService {
   }
 
   //set items
-  storeTokens(token: string, refreshToken: string): void {
-    localStorage.setItem('token', token);
-    localStorage.setItem('refreshToken', refreshToken);
+  storeTokens(tokens: any): void {
+    console.log(Object.keys(tokens));
+    Object.keys(tokens).forEach((key) => {
+      localStorage.setItem(key, tokens[key])
+    })
   }
 
   getToken(): string | null {
