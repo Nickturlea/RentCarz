@@ -11,8 +11,8 @@ using RentCarz.Server.Data;
 namespace RentCarz.Server.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250314012640_fixValidation")]
-    partial class fixValidation
+    [Migration("20250314212858_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -102,6 +102,58 @@ namespace RentCarz.Server.Migrations
                     b.HasKey("CarTypeId");
 
                     b.ToTable("CarTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            CarTypeId = 1,
+                            Type = "Sedan"
+                        },
+                        new
+                        {
+                            CarTypeId = 2,
+                            Type = "SUV"
+                        },
+                        new
+                        {
+                            CarTypeId = 3,
+                            Type = "Truck"
+                        },
+                        new
+                        {
+                            CarTypeId = 4,
+                            Type = "Convertible"
+                        },
+                        new
+                        {
+                            CarTypeId = 5,
+                            Type = "Electric"
+                        },
+                        new
+                        {
+                            CarTypeId = 6,
+                            Type = "Coupe"
+                        },
+                        new
+                        {
+                            CarTypeId = 7,
+                            Type = "Hatchback"
+                        },
+                        new
+                        {
+                            CarTypeId = 8,
+                            Type = "Minivan"
+                        },
+                        new
+                        {
+                            CarTypeId = 9,
+                            Type = "Luxury"
+                        },
+                        new
+                        {
+                            CarTypeId = 10,
+                            Type = "Sports Car"
+                        });
                 });
 
             modelBuilder.Entity("RentCarz.Server.Models.Member", b =>

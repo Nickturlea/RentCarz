@@ -1,5 +1,5 @@
 <div class="login-container">
-  <h2>Login</h2>
+  <h2>Admin Login</h2>
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
 
     <div class="form-group">
@@ -23,7 +23,6 @@
 
   <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
 
-  <p class="signup-link">Don't have an account? <a routerLink="/signup">Sign up</a></p>
-  <p class="admin-login-link">Logging in as an administrator? <a routerLink="/admin-login">Admin Login</a></p>
+  <p class="admin-login-link"><a routerLink="/login">Return to User Login</a></p>
   <button class="back-btn" (click)="goBack()">Back to Home</button>
-</div>
+ </div>
