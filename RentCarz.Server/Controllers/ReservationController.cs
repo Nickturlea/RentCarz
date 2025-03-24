@@ -31,12 +31,33 @@ namespace RentCarz.Server.Controllers
         }*/
 
 
-        // GET: api/cars/available-cars
+        // GET: api/reservation/carById/id
         [HttpGet("carById/{id}")]
         public async Task<IActionResult> GetCarById(int id)
         {
             var cars = await _reservationService.getCarById(id);
             return Ok(cars);
+        }
+
+        // GET: api/reservation/cartById/id
+        [HttpGet("cartById/{id}")]
+        public async Task<IActionResult> GetCartById(int id)
+        {
+            var res = await _reservationService.getCartById(id);
+            return Ok(res);
+        }
+
+        [HttpPost("checkout")]
+        public async Task<IActionResult> Checkout([FromBody] Reservation data )
+        {
+
+            var reservation = await _reservationService.Checkout(data. ReservationId, data.MemberId, data.CarId, data.StartDate, data.EndDate);
+
+            if(reservation == null){
+                return BadRequest(new { message = "Reservation null." });
+            }
+
+            return Ok(reservation);
         }
 
         [HttpPost("reserve")]
@@ -48,6 +69,15 @@ namespace RentCarz.Server.Controllers
             if(reservation == null){
                 return BadRequest(new { message = "Reservation null." });
             }
+
+            return Ok(reservation);
+        }
+
+        [HttpPost("deleteReservation")]
+        public async Task<IActionResult> Delete([FromBody] int id )
+        {
+            
+            var reservation = await _reservationService.DeleteReservation(id);
 
             return Ok(reservation);
         }

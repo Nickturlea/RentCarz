@@ -60,7 +60,8 @@ namespace RentCarz.Server.Data
 				.WithOne(p => p.Reservation)
 				.HasForeignKey<Payment>(p => p.ReservationId)
 				.OnDelete(DeleteBehavior.Cascade);*/
-				
+
+
 			modelBuilder.Entity<Member>()
 				.HasOne(m => m.Review)
 				.WithOne(r => r.Member)
@@ -86,9 +87,9 @@ namespace RentCarz.Server.Data
 				.HasOne(r => r.Member)
 				.WithMany(m => m.Reservations)
 				.HasForeignKey(r => r.MemberId)
-				.OnDelete(DeleteBehavior.Cascade);*/
+				.OnDelete(DeleteBehavior.Cascade);
 
-				/*
+				
 			modelBuilder.Entity<Reservation>()
 				.HasOne(r => r.Car)
 				.WithMany(c => c.Reservations)

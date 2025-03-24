@@ -17,7 +17,19 @@ export class ReservationService {
     return this.http.get<Car>(`${this.apiUrl}/carById/${id}`);
   }
 
+  getCartById(id : Number): Observable<Reservation> {
+    return this.http.get<Reservation>(`${this.apiUrl}/cartById/${id}`);
+  }
+
+  checkout(Reservation : { ReservationId: number; MemberId: number; CarId: number; StartDate: Date; EndDate: Date; Status: number }): Observable<Reservation> {
+    return this.http.post<Reservation>(`${this.apiUrl}/checkout`, Reservation);
+  }
+
   reserve(Reservation : { MemberId: number; CarId: number; StartDate: Date; EndDate: Date; Status: number }): Observable<Reservation> {
     return this.http.post<Reservation>(`${this.apiUrl}/reserve`, Reservation);
+  }
+
+  deleteReservation(id : Number): Observable<Reservation> {
+    return this.http.post<Reservation>(`${this.apiUrl}/deleteReservation`, id);
   }
 }

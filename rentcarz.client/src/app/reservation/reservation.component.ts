@@ -52,7 +52,6 @@ getCar(): void {
 
  onSubmit(){
   var user = Number(this.userId);
-  console.log(this.reservationForm.value.startDate);
 
   const reservationData = {
     MemberId: user,

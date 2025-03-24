@@ -27,6 +27,26 @@ public class ReservationService
             .Where(c => c.Availability == true && c.CarId == id)
             .ToListAsync();
     }
+
+    public async Task<List<Reservation>> getCartById(int id)
+    {
+        return await _context.Reservations
+            .Where(c => c.MemberId == id && c.Status == Reservation.ReservationStatus.Pending)
+            .ToListAsync();
+    }
+
+    // Checkout reservation
+    public async Task<Reservation> Checkout(int ReservationId, int MemberId, int CarId, DateTime StartDate, DateTime EndDate)
+    {
+
+        var res = await _context.Reservations.FindAsync(ReservationId);
+        res.Status = Reservation.ReservationStatus.Confirmed;
+        // Save to the database
+        _context.Reservations.Update(res);
+        await _context.SaveChangesAsync();
+
+        return res;
+    }
     
 
     // Make a reservation
@@ -61,5 +81,18 @@ public class ReservationService
         await _context.SaveChangesAsync();
 
         return reservation;
+    }
+
+    //delete
+    public async Task<Reservation> DeleteReservation(int id)
+    {
+        //get the reservatoin
+        var reservation = await _context.Reservations.FindAsync(id);
+
+        //delete the reservation and save changes
+        _context.Reservations.Remove(reservation);
+        await _context.SaveChangesAsync();
+
+        return null;
     }
 }

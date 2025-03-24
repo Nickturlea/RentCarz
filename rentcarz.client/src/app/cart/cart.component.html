@@ -1,1 +1,75 @@
-<p>cart works!</p>
+<div class="listings-container">
+    <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+  
+    <div class="listings-grid">
+      <h3>Reservations:</h3>
+      <div *ngFor="let Reservation of reservations" class="listing-item">
+        <p><b>Start Date:</b> {{ Reservation.startDate }} </p>
+        <p><b>End Date:</b> {{ Reservation.endDate }}</p>
+        <button (click)="removeReservations(Reservation.reservationId)">Remove Reservation</button>
+      </div>
+    </div>
+
+    <br/>
+    <br/>
+    <form [formGroup]="paymentForm" (ngSubmit)="onSubmit()">
+      
+      <div class="form-group">
+        <label for="cardNumber">Card Number: </label>
+        <input type="text" id="cardNumber" formControlName="cardNumber" />
+      </div>
+      <br/>
+
+      <div class="form-group">
+        <label for="month">Month: </label>
+        <input type="number" id="month" formControlName="month" min="01" max="12"/>
+      </div>
+      <br/>
+
+      <div class="form-group">
+        <label for="year">Year: </label>
+        <input type="number" id="year" formControlName="year" min="2025"/>
+      </div>
+      <br/>
+
+      <div class="form-group">
+        <label for="cvv">CVV: </label>
+        <input type="number" id="cvv" formControlName="cvv" min="000" max="999"/>
+      </div>
+      <br/>
+
+      <div class="form-group">
+        <label for="firstName">First name: </label>
+        <input type="text" id="firstName" formControlName="firstName" />
+      </div>
+      <br/>
+  
+      <div class="form-group">
+        <label for="lastName">Last name: </label>
+        <input type="text" id="lastName" formControlName="lastName" />
+      </div>
+      <br/>
+
+      <div class="form-group">
+        <label for="country">Country: </label>
+        <input type="text" id="country" formControlName="country" />
+      </div>
+      <br/>
+
+      <div class="form-group">
+        <label for="city">City: </label>
+        <input type="text" id="city" formControlName="city" />
+      </div>
+      <br/>
+
+      <div class="form-group">
+        <label for="zipcode">Zipcode: </label>
+        <input type="text" id="zipcode" formControlName="zipcode" />
+      </div>
+      <br/>
+  
+  
+      <button type="submit">Checkout</button>
+    </form>
+  </div>
+  

@@ -10,9 +10,8 @@ namespace RentCarz.Server.Models
         [Key]
         public int PaymentId { get; set; }
 
-        public int ReservationId { get; set; }
-        [ForeignKey("ReservationId")]
-        public Reservation Reservation { get; set; }
+        [ForeignKey("MemberId")]
+        public int MemberId { get; set; }
 
         [Required]
         public string CardNumber { get; set; }
@@ -40,12 +39,6 @@ namespace RentCarz.Server.Models
 
         [Required]
         public string ZipCode { get; set; }
-
-        [Required]
-        public string Email { get; set; }
-
-        [Required]
-        public string PhoneNumber { get; set; }
     }
 
 }

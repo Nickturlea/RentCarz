@@ -7,8 +7,8 @@
     <a routerLink="/listings">Car Listings</a>
     <a href="/about">About</a>
     <a href="/contact">Contact</a>
+    <a href="/cart">Cart</a>
   </div>
-  
   <div class="auth-buttons">
     <button *ngIf="!authService.getToken()" class="sign-in" routerLink="/login">Sign Up / Login</button>
     <button *ngIf="authService.getUserClass() == 'admin'" class="btn-admin-panel">Admin Panel</button>

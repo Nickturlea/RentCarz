@@ -10,17 +10,16 @@ namespace RentCarz.Server.Models
         [Key]
         public int ReservationId { get; set; }
 
-        public int MemberId { get; set; }
         [ForeignKey("MemberId")]
+        public int MemberId { get; set; }
         /*
-        public Member Member { get; set; }
-        */
-
-        public int CarId { get; set; }
+        public Member Member { get; set; }*/
+        
         [ForeignKey("CarId")]
+        public int CarId { get; set; }
         /*
-        public Car Car { get; set; }
-        */
+        public Car Car { get; set; }*/
+        
 
         [Required]
         public DateTime StartDate { get; set; }
@@ -29,7 +28,7 @@ namespace RentCarz.Server.Models
         public DateTime EndDate { get; set; }
 
         [Required]
-        public ReservationStatus Status { get; set; } = ReservationStatus.Pending;
+        public ReservationStatus Status { get; set; }
 
 
         public enum ReservationStatus

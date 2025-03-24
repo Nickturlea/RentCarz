@@ -1,7 +1,8 @@
 export interface Reservation {
-    MemberId: number;
-    CarId: number;
-    StartDate: Date;
-    EndDate: Date;
-    Status: number
+    reservationId : number;
+    memberId: number;
+    carId: number;
+    startDate: Date;
+    endDate: Date;
+    status: number
   }
