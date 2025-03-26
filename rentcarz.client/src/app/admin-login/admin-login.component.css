@@ -1,0 +1,138 @@
+.login-container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #003300;
+  .login-container
+
+{
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #003300; /* Dark green */
+  color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-group {
+  width: 100%;
+  text-align: left;
+}
+
+label {
+  font-weight: bold;
+  display: block;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid black;
+  border-radius: 5px;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: black;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+  button:hover {
+    background-color: white;
+    color: black;
+  }
+
+  button:disabled {
+    background-color: gray;
+    cursor: not-allowed;
+  }
+
+.error {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.signup-link {
+  text-align: center;
+  margin-top: 10px;
+}
+
+  .signup-link a {
+    color: white;
+    font-weight: bold;
+    text-decoration: underline;
+  }
+
+    .signup-link a:hover {
+      color: lightgray;
+    }
+
+color: white;
+border-radius: 10px;
+box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+
+.form-group {
+  width: 100%;
+  text-align: left;
+}
+
+label {
+  font-weight: bold;
+  display: block;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid black;
+  border-radius: 5px;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: black;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+  button:hover {
+    background-color: white;
+    color: black;
+  }
+
+  button:disabled {
+    background-color: gray;
+    cursor: not-allowed;
+  }
+
+.error {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}
