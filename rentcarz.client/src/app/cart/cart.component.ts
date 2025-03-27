@@ -23,17 +23,17 @@ export class CartComponent implements OnInit {
 
   constructor(private reservationService: ReservationService, private authService: AuthService, private fb: FormBuilder, private router: Router) {
     this.paymentForm = this.fb.group({
-      cardNumber: ['5555555555555555'],
-      month: ['01'],
-      year: ['2026'],
-      cvv: ['999'],
-      firstName: ['First'],
-      lastName: ['Last'],
-      country: ['Canada'],
-      city: ['Waterloo'],
-      zipcode: ['G2G2G2'],
-      email: ['email@gmail.com'],
-      tel: ['5555555555']
+      cardNumber: [''],
+      month: [''],
+      year: [''],
+      cvv: [''],
+      firstName: [''],
+      lastName: [''],
+      country: [''],
+      city: [''],
+      zipcode: [''],
+      email: [''],
+      tel: ['']
     });
   }
 
