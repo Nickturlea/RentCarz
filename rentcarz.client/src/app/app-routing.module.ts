@@ -10,6 +10,7 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
+import { ReviewsComponent } from './reviews/reviews.component';
 
 const routes: Routes = [
   { path: '', component: GetStartedComponent },
@@ -21,7 +22,9 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'admin', component: AdminPanelComponent },
-  { path: 'admin-login', component: AdminLoginComponent }
+  { path: 'admin-login', component: AdminLoginComponent },
+  { path: 'reviews', component: ReviewsComponent}
+
 ];
 
 @NgModule({

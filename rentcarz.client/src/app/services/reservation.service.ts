@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Car } from '../models/car.model';
 import { Reservation } from '../models/reservation.model';
+import { Payment } from '../models/payment.model';
 
 @Injectable({
   providedIn: 'root'
@@ -31,5 +32,10 @@ export class ReservationService {
 
   deleteReservation(id : Number): Observable<Reservation> {
     return this.http.post<Reservation>(`${this.apiUrl}/deleteReservation`, id);
+  }
+
+  addPaymentMethod(Payment : { ReservationId: number; CardNumber: string; Month: number; Year: number; CVV: number; FirstName: string; 
+    LastName: string; Country: string; City: string; Zipcode: string; Email: string; PhoneNumber: string }): Observable<Payment>{
+    return this.http.post<Payment>(`${this.apiUrl}/payment`, Payment)
   }
 }

@@ -61,12 +61,12 @@ namespace RentCarz.Server.Data
 				.HasForeignKey<Payment>(p => p.ReservationId)
 				.OnDelete(DeleteBehavior.Cascade);*/
 
-
+				/*
 			modelBuilder.Entity<Member>()
 				.HasOne(m => m.Review)
 				.WithOne(r => r.Member)
 				.HasForeignKey<Review>(r => r.MemberId)
-				.OnDelete(DeleteBehavior.Cascade);
+				.OnDelete(DeleteBehavior.Cascade);*/
 
 			modelBuilder.Entity<Car>()
 				.HasOne(c => c.CarType)

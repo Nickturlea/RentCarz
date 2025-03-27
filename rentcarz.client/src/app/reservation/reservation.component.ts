@@ -60,6 +60,7 @@ getCar(): void {
     EndDate: this.reservationForm.value.endDate,
     Status: 0
   }
+  console.log(reservationData);
 
   this.reservationService.reserve(reservationData).subscribe({
     next: (response) => {

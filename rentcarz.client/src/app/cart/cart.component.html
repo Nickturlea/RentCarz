@@ -1,75 +1,93 @@
 <div class="listings-container">
-    <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
-  
-    <div class="listings-grid">
-      <h3>Reservations:</h3>
+  <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+
+  <div class="listings-grid">
+    <h3>Reservations:</h3>
+    <div *ngIf="reservations.length == 0">
+      <p>No reservations made. Go to <a href="/listings">car listings</a></p>
+    </div>
+    <div *ngIf="reservations.length != 0">
       <div *ngFor="let Reservation of reservations" class="listing-item">
         <p><b>Start Date:</b> {{ Reservation.startDate }} </p>
         <p><b>End Date:</b> {{ Reservation.endDate }}</p>
         <button (click)="removeReservations(Reservation.reservationId)">Remove Reservation</button>
       </div>
     </div>
-
+  </div>
+  <div *ngIf="reservations.length != 0">
     <br/>
     <br/>
+    <h3>Payment Information</h3>
     <form [formGroup]="paymentForm" (ngSubmit)="onSubmit()">
       
       <div class="form-group">
         <label for="cardNumber">Card Number: </label>
-        <input type="text" id="cardNumber" formControlName="cardNumber" />
+        <input type="text" id="cardNumber" formControlName="cardNumber" minlength="16" maxlength="16"/>
       </div>
       <br/>
-
+  
       <div class="form-group">
         <label for="month">Month: </label>
-        <input type="number" id="month" formControlName="month" min="01" max="12"/>
+        <input type="text" id="month" formControlName="month" min="01" max="12" minlength="2" maxlength="2"/>
       </div>
       <br/>
-
+  
       <div class="form-group">
         <label for="year">Year: </label>
-        <input type="number" id="year" formControlName="year" min="2025"/>
+        <input type="text" id="year" formControlName="year" min="2025" minlength="4" maxlength="4"/>
       </div>
       <br/>
-
+  
       <div class="form-group">
         <label for="cvv">CVV: </label>
-        <input type="number" id="cvv" formControlName="cvv" min="000" max="999"/>
+        <input type="text" id="cvv" formControlName="cvv" min="000" max="999" minlength="3" maxlength="3"/>
       </div>
       <br/>
-
+  
       <div class="form-group">
         <label for="firstName">First name: </label>
-        <input type="text" id="firstName" formControlName="firstName" />
+        <input type="text" id="firstName" formControlName="firstName" maxlength="15"/>
       </div>
       <br/>
   
       <div class="form-group">
         <label for="lastName">Last name: </label>
-        <input type="text" id="lastName" formControlName="lastName" />
+        <input type="text" id="lastName" formControlName="lastName" maxlength="15"/>
       </div>
       <br/>
-
+  
       <div class="form-group">
         <label for="country">Country: </label>
-        <input type="text" id="country" formControlName="country" />
+        <input type="text" id="country" formControlName="country" maxlength="40"/>
       </div>
       <br/>
-
+  
       <div class="form-group">
         <label for="city">City: </label>
-        <input type="text" id="city" formControlName="city" />
+        <input type="text" id="city" formControlName="city" maxlength="50"/>
       </div>
       <br/>
-
+  
       <div class="form-group">
         <label for="zipcode">Zipcode: </label>
-        <input type="text" id="zipcode" formControlName="zipcode" />
+        <input type="text" id="zipcode" formControlName="zipcode" minlength="6" maxlength="6"/>
+      </div>
+      <br/>
+  
+      <div class="form-group">
+        <label for="email">Email: </label>
+        <input type="email" id="email" formControlName="email" minlength="12" maxlength="50"/>
+      </div>
+      <br/>
+  
+      <div class="form-group">
+        <label for="tel">Telephone: </label>
+        <input type="tel" id="tel" formControlName="tel"/>
       </div>
       <br/>
   
   
-      <button type="submit">Checkout</button>
+      <button type="submit">Purchase</button>
     </form>
   </div>
-  
+</div>

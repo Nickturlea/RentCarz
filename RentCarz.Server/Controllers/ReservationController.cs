@@ -2,7 +2,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RentCarz.Server.Data;
 using RentCarz.Server.Models;
-
+using System;
+using System.Text;
 
 namespace RentCarz.Server.Controllers
 {
@@ -48,12 +49,13 @@ namespace RentCarz.Server.Controllers
         }
 
         [HttpPost("checkout")]
-        public async Task<IActionResult> Checkout([FromBody] Reservation data )
+        public async Task<IActionResult> Checkout([FromBody] Reservation data)
         {
 
-            var reservation = await _reservationService.Checkout(data. ReservationId, data.MemberId, data.CarId, data.StartDate, data.EndDate);
+            var reservation = await _reservationService.Checkout(data.ReservationId, data.MemberId, data.CarId, data.StartDate, data.EndDate);
 
-            if(reservation == null){
+            if (reservation == null)
+            {
                 return BadRequest(new { message = "Reservation null." });
             }
 
@@ -61,22 +63,38 @@ namespace RentCarz.Server.Controllers
         }
 
         [HttpPost("reserve")]
-        public async Task<IActionResult> Reserve([FromBody] Reservation data )
+        public async Task<IActionResult> Reserve([FromBody] Reservation data)
         {
 
             var reservation = await _reservationService.MakeReservation(data.MemberId, data.CarId, data.StartDate, data.EndDate);
 
-            if(reservation == null){
+            if (reservation == null)
+            {
                 return BadRequest(new { message = "Reservation null." });
             }
 
             return Ok(reservation);
         }
 
-        [HttpPost("deleteReservation")]
-        public async Task<IActionResult> Delete([FromBody] int id )
+        [HttpPost("payment")]
+        public async Task<IActionResult> AddPayment([FromBody] Payment data)
         {
             
+
+            var paymentMethod = await _reservationService.AddPayment(data.ReservationId, data.CardNumber, data.Month, data.Year, data.CVV, data.FirstName, 
+            data.LastName, data.Country, data.City, data.ZipCode, data.Email, data.PhoneNumber);
+
+            if(paymentMethod == null){
+                return BadRequest(new { message = "Payment null." });
+            }
+
+            return Ok(data);
+        }
+
+        [HttpPost("deleteReservation")]
+        public async Task<IActionResult> Delete([FromBody] int id)
+        {
+
             var reservation = await _reservationService.DeleteReservation(id);
 
             return Ok(reservation);

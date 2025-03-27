@@ -83,6 +83,34 @@ public class ReservationService
         return reservation;
     }
 
+    // Add a payment method
+    public async Task<Payment> AddPayment(int ReservationId, string CardNumber, int Month, int Year, int CVV, 
+    string FirstName, string LastName, string Country, string City, string ZipCode, string Email, string PhoneNumber)
+    {
+        // Create the reservation
+        var paymentMethod = new Payment
+        {
+            ReservationId = ReservationId,
+            CardNumber = CardNumber, 
+            Month = Month, 
+            Year = Year,
+            CVV = CVV, 
+            FirstName = FirstName, 
+            LastName = LastName, 
+            Country = Country, 
+            City = City, 
+            ZipCode = ZipCode,
+            Email = Email,
+            PhoneNumber = PhoneNumber
+        };
+
+        // Save to the database
+        _context.Payments.Add(paymentMethod);
+        await _context.SaveChangesAsync();
+
+        return paymentMethod;
+    }
+
     //delete
     public async Task<Reservation> DeleteReservation(int id)
     {

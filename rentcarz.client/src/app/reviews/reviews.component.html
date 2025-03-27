@@ -1,0 +1,32 @@
+<h2>User Reviews</h2>
+<form [formGroup]="reviewForm" (ngSubmit)="onSubmit()">
+
+    <div *ngIf="!isReviwed">
+        <div class="form-group">
+            <label for="rating">Rating: </label>
+            <input type="number" id="rating" formControlName="rating" min="1" max="5"/>
+        </div>
+        <br />
+
+        
+        <div class="form-group">
+            <p>Comment:</p><textarea rows="10" cols="70" id="comment" formControlName="comment" > </textarea>
+        </div>
+        <br />
+
+
+        <button type="submit">Add Review</button>
+        <br />
+        <br />
+    </div>
+
+    <div *ngFor="let review of reviews">
+        <div *ngFor="let user of members">
+            <div *ngIf="user.userId == review.memberId"><p><b>User: </b>{{user.userName}}</p></div>
+        </div>
+        <p><b>Reivew:</b> {{review.comment}}</p>
+        <p><b>Date:</b> {{review.reviewDate}}</p>
+        <br/>
+        <br/>
+    </div>
+</form>
