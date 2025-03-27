@@ -15,6 +15,7 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
+import { ReviewsComponent } from './reviews/reviews.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { AdminLoginComponent } from './admin-login/admin-login.component';
     AboutComponent,
     ContactComponent,
     AdminLoginComponent,
+    ReviewsComponent,
   ],
   imports: [
     BrowserModule,

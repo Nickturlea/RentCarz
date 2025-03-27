@@ -54,17 +54,19 @@ namespace RentCarz.Server.Data
 				.Property(r => r.Status)
 				.HasConversion<string>();
 
+				/*
 			modelBuilder.Entity<Reservation>()
 				.HasOne(r => r.Payment)
 				.WithOne(p => p.Reservation)
 				.HasForeignKey<Payment>(p => p.ReservationId)
-				.OnDelete(DeleteBehavior.Cascade);
+				.OnDelete(DeleteBehavior.Cascade);*/
 
+				/*
 			modelBuilder.Entity<Member>()
 				.HasOne(m => m.Review)
 				.WithOne(r => r.Member)
 				.HasForeignKey<Review>(r => r.MemberId)
-				.OnDelete(DeleteBehavior.Cascade);
+				.OnDelete(DeleteBehavior.Cascade);*/
 
 			modelBuilder.Entity<Car>()
 				.HasOne(c => c.CarType)
@@ -79,18 +81,20 @@ namespace RentCarz.Server.Data
 				.HasForeignKey(c => c.AdminId)
 				.OnDelete(DeleteBehavior.SetNull)
 				.IsRequired(false);
-
+				
+				/*
 			modelBuilder.Entity<Reservation>()
 				.HasOne(r => r.Member)
 				.WithMany(m => m.Reservations)
 				.HasForeignKey(r => r.MemberId)
 				.OnDelete(DeleteBehavior.Cascade);
 
+				
 			modelBuilder.Entity<Reservation>()
 				.HasOne(r => r.Car)
 				.WithMany(c => c.Reservations)
 				.HasForeignKey(r => r.CarId)
-				.OnDelete(DeleteBehavior.Cascade);
+				.OnDelete(DeleteBehavior.Cascade);*/
 		}
 	}
 

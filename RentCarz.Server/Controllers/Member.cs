@@ -119,10 +119,13 @@ namespace RentCarz.Server.Controllers
                 // generate a fresh access token
                 var newJwtToken = _authService.GenerateJwtToken(member);
 
+                var memberId = member.MemberId;
+
                 return Ok(new
                 {
                     token = newJwtToken,
-                    refreshToken = newRefreshToken
+                    refreshToken = newRefreshToken,
+                    userId = memberId
                 });
 
             }

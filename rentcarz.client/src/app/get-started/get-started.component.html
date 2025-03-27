@@ -5,10 +5,13 @@
   <div class="nav-links">
     <a routerLink="/">Home</a>
     <a routerLink="/listings">Car Listings</a>
+    <a routerLink="/reviews">Reviews</a>
     <a href="/about">About</a>
     <a href="/contact">Contact</a>
   </div>
-  
+  <div class ="cart-button">
+    <button *ngIf="authService.getToken()" class="logout-btn" routerLink="/cart">Cart</button>
+  </div>
   <div class="auth-buttons">
     <button *ngIf="!authService.getToken()" class="sign-in" routerLink="/login">Sign Up / Login</button>
     <button *ngIf="authService.getUserClass() == 'admin'" class="btn-admin-panel">Admin Panel</button>

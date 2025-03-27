@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using RentCarz.Server.Services;
+using System.Text.Json;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -36,6 +38,7 @@ builder.Services.AddScoped<Authentication>();
 builder.Services.AddScoped<AdminService>();
 builder.Services.AddScoped<CarService>();
 builder.Services.AddScoped<ReservationService>();
+builder.Services.AddScoped<ReviewService>();
 
 //authentication
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -56,7 +59,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 builder.Services.AddAuthorization();
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(options => options.JsonSerializerOptions.NumberHandling = System.Text.Json.Serialization.JsonNumberHandling.AllowReadingFromString);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

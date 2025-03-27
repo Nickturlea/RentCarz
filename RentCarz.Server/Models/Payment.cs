@@ -11,8 +11,8 @@ namespace RentCarz.Server.Models
         public int PaymentId { get; set; }
 
         public int ReservationId { get; set; }
-        [ForeignKey("ReservationId")]
-        public Reservation Reservation { get; set; }
+        [ForeignKey("ReservationId")]/*
+        public Reservation Reservation { get; set; }*/
 
         [Required]
         public string CardNumber { get; set; }

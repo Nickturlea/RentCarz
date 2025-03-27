@@ -11,8 +11,8 @@ namespace RentCarz.Server.Models
         public int ReviewId { get; set; }
 
         public int MemberId { get; set; }
-        [ForeignKey("MemberId")]
-        public Member Member { get; set; }
+        [ForeignKey("MemberId")]/*
+        public Member Member { get; set; }*/
 
         [Required]
         [Range(1, 5)]

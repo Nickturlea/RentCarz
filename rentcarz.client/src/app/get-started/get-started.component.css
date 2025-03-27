@@ -57,6 +57,15 @@
   gap: 10px;
 }
 
+.cart-button {
+  position: absolute;
+  top: 50%;
+  right: 100px;
+  transform: translateY(-50%);
+  display: flex;
+  gap: 10px;
+}
+
 .sign-in,
 .logout-btn {
   padding: 8px 15px;
