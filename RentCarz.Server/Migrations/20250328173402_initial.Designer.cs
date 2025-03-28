@@ -11,7 +11,7 @@ using RentCarz.Server.Data;
 namespace RentCarz.Server.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250314212858_initial")]
+    [Migration("20250328173402_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -238,9 +238,6 @@ namespace RentCarz.Server.Migrations
 
                     b.HasKey("PaymentId");
 
-                    b.HasIndex("ReservationId")
-                        .IsUnique();
-
                     b.ToTable("Payments");
                 });
 
@@ -345,17 +342,6 @@ namespace RentCarz.Server.Migrations
                     b.Navigation("CarType");
                 });
 
-            modelBuilder.Entity("RentCarz.Server.Models.Payment", b =>
-                {
-                    b.HasOne("RentCarz.Server.Models.Reservation", "Reservation")
-                        .WithOne("Payment")
-                        .HasForeignKey("RentCarz.Server.Models.Payment", "ReservationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Reservation");
-                });
-
             modelBuilder.Entity("RentCarz.Server.Models.RefreshToken", b =>
                 {
                     b.HasOne("RentCarz.Server.Models.Member", "Member")
@@ -369,32 +355,26 @@ namespace RentCarz.Server.Migrations
 
             modelBuilder.Entity("RentCarz.Server.Models.Reservation", b =>
                 {
-                    b.HasOne("RentCarz.Server.Models.Car", "Car")
+                    b.HasOne("RentCarz.Server.Models.Car", null)
                         .WithMany("Reservations")
                         .HasForeignKey("CarId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("RentCarz.Server.Models.Member", "Member")
+                    b.HasOne("RentCarz.Server.Models.Member", null)
                         .WithMany("Reservations")
                         .HasForeignKey("MemberId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Car");
-
-                    b.Navigation("Member");
                 });
 
             modelBuilder.Entity("RentCarz.Server.Models.Review", b =>
                 {
-                    b.HasOne("RentCarz.Server.Models.Member", "Member")
+                    b.HasOne("RentCarz.Server.Models.Member", null)
                         .WithOne("Review")
                         .HasForeignKey("RentCarz.Server.Models.Review", "MemberId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Member");
                 });
 
             modelBuilder.Entity("RentCarz.Server.Models.Admin", b =>
@@ -419,12 +399,6 @@ namespace RentCarz.Server.Migrations
                     b.Navigation("Reservations");
 
                     b.Navigation("Review");
-                });
-
-            modelBuilder.Entity("RentCarz.Server.Models.Reservation", b =>
-                {
-                    b.Navigation("Payment")
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

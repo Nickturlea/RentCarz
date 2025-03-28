@@ -12,7 +12,7 @@
 
   <div class="auth-buttons">
     <button *ngIf="!authService.getToken()" class="sign-in" routerLink="/login">Sign Up / Login</button>
-    <button *ngIf="authService.getUserClass() == 'admin'" class="btn-admin-panel">Admin Panel</button>
+    <button *ngIf="authService.getUserClass() == 'admin'" class="btn-admin-panel" routerLink="/admin">Admin Panel</button>
     <button *ngIf="authService.getToken()" (click)="logout()" class="logout-btn">Logout</button>
   </div>
 </nav>
