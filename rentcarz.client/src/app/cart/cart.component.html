@@ -14,7 +14,7 @@
           </div>
         </div>
         <p><b>Start Date:</b> {{ Reservation.startDate.toString().split('T')[0] }} <b>Start Time: </b>{{ Reservation.startDate.toString().split('T')[1] }}</p>
-        <p><b>End Date:</b> {{ Reservation.endDate.toString().split('T')[0] }} <b>End Time: </b>{{ Reservation.startDate.toString().split('T')[1] }}</p>
+        <p><b>End Date:</b> {{ Reservation.endDate.toString().split('T')[0] }} <b>End Time: </b>{{ Reservation.endDate.toString().split('T')[1] }}</p>
         <button (click)="removeReservations(Reservation.reservationId)">Remove Reservation</button>
       </div>
     </div>

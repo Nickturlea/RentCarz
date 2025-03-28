@@ -8,8 +8,17 @@
     <a routerLink="/listings">Car Listings</a>
     <a routerLink="/about">About</a>
     <a routerLink="/contact">Contact</a>
-    <a *ngIf="authService.getToken()" routerLink="/cart">Cart</a>
+    
     <a *ngIf="authService.getToken()" routerLink="/reviews">Leave a Review</a>
+
+    
+    <a *ngIf="authService.getToken()" routerLink="/cart" class="cart-link">
+      <span class="cart-icon">
+        🛒
+        <span class="badge" *ngIf="reservationCount > 0">{{ reservationCount }}</span>
+      </span>
+    </a>
+    
   </div>
 
   <div class="auth-buttons">
