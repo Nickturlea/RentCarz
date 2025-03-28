@@ -117,6 +117,10 @@ export class AuthService {
   getUserClass(): string | null {
     return localStorage.getItem('userClass');
   }
+
+  isAdmin(): boolean {
+    return this.getUserClass() === 'admin';
+  }
   
   logout(): void {
     localStorage.removeItem('token');
