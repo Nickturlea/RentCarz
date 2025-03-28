@@ -67,7 +67,8 @@ getCar(): void {
   this.reservationService.reserve(reservationData).subscribe({
     next: (response) => {
       console.log('Reservation successful', response);
-      this.router.navigate(['/listings']);
+      this.router.navigate(['/listings']).then(() => {window.location.reload();
+  });
     },
     error: (error) => {
       console.error('Reservation failed', error);

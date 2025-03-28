@@ -78,7 +78,6 @@ export class CartComponent implements OnInit {
     var month = Number(this.paymentForm.value.month);
     var year = Number(this.paymentForm.value.year);
     var cvv = Number(this.paymentForm.value.cvv);
-    var checkoutValid = false;
 
     const checkPay = {
       ReservationId: this.reservations[0].reservationId,
@@ -98,51 +97,55 @@ export class CartComponent implements OnInit {
     console.log(checkPay);
     this.reservationService.checkPaymentMethod(checkPay).subscribe({
       next: (response) => {
-        checkoutValid = true;
+        this.addPayment();
       },
       error: (error) => {
         console.error('Adding payment method failed', error);
         this.errorMessage = error.error?.message || "Adding payment failed. Please try again.";
       }
     });
-
-    if (checkoutValid) {
-      //not a fan of this would rather send arraylist of objects instead. But keep getting errors.
-      for (var i = 0; i < this.reservations.length; i++) {
-
-        const paymentData = {
-          reservationId: this.reservations[i].reservationId,
-          cardNumber: String(this.paymentForm.value.cardNumber),
-          month: month,
-          year: year,
-          cVV: cvv,
-          firstName: this.paymentForm.value.firstName,
-          lastName: this.paymentForm.value.lastName,
-          country: this.paymentForm.value.country,
-          city: this.paymentForm.value.city,
-          zipcode: this.paymentForm.value.zipcode,
-          email: this.paymentForm.value.email,
-          phoneNumber: this.paymentForm.value.tel
-        }
-
-        //adds the payment method to the assosiated reservatoin
-        this.reservationService.addPaymentMethod(paymentData).subscribe({
-          next: (response) => {
-            console.log('Added payment method', response);
-          },
-          error: (error) => {
-            console.error('Adding payment method failed', error);
-            this.errorMessage = error.error?.message || "Adding payment failed. Please try again.";
-          }
-        });
-
-        //Checks out that specific reservation
-        this.checkout(i);
-      }
-      this.router.navigate(['/listings']);
-    }
   }
 
+  //adds the payment method
+  addPayment(){
+    var month = Number(this.paymentForm.value.month);
+    var year = Number(this.paymentForm.value.year);
+    var cvv = Number(this.paymentForm.value.cvv);
+    //not a fan of this would rather send arraylist of objects instead. But keep getting errors.
+    for (var i = 0; i < this.reservations.length; i++) {
+
+      const paymentData = {
+        reservationId: this.reservations[i].reservationId,
+        cardNumber: String(this.paymentForm.value.cardNumber),
+        month: month,
+        year: year,
+        cVV: cvv,
+        firstName: this.paymentForm.value.firstName,
+        lastName: this.paymentForm.value.lastName,
+        country: this.paymentForm.value.country,
+        city: this.paymentForm.value.city,
+        zipcode: this.paymentForm.value.zipcode,
+        email: this.paymentForm.value.email,
+        phoneNumber: this.paymentForm.value.tel
+      }
+
+      //adds the payment method to the assosiated reservatoin
+      this.reservationService.addPaymentMethod(paymentData).subscribe({
+        next: (response) => {
+          console.log('Added payment method', response);
+        },
+        error: (error) => {
+          console.error('Adding payment method failed', error);
+          this.errorMessage = error.error?.message || "Adding payment failed. Please try again.";
+        }
+      });
+
+      //Checks out that specific reservation
+      this.checkout(i);
+    }
+    this.router.navigate(['/listings']);
+
+  }
 
   //sends res to db and changes status
   checkout(resId: number) {
