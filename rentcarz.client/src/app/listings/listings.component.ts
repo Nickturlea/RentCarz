@@ -63,10 +63,12 @@ export class ListingsComponent implements OnInit {
 
   openEditModal(car: Car): void {
     this.editingCar = { ...car }; 
+    this.isModalOpen = true;
   }
 
   closeEditModal(): void {
     this.editingCar = null; 
+    this.isModalOpen = false;
   }
 
   updateCar(): void {

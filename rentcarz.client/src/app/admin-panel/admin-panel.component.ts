@@ -13,6 +13,19 @@ export class AdminPanelComponent {
   successMessage: string = '';
   errorMessage: string = '';
 
+  carTypes = [
+    { id: 1, name: 'Sedan' },
+    { id: 2, name: 'SUV' },
+    { id: 3, name: 'Truck' },
+    { id: 4, name: 'Convertible' },
+    { id: 5, name: 'Electric' },
+    { id: 6, name: 'Coupe' },
+    { id: 7, name: 'Hatchback' },
+    { id: 8, name: 'Minivan' },
+    { id: 9, name: 'Luxury' },
+    { id: 10, name: 'Sports Car' }
+  ];
+  
   constructor(private fb: FormBuilder, private adminService: AdminService) {
     this.carForm = this.fb.group({
       make: ['', Validators.required],
@@ -22,7 +35,6 @@ export class AdminPanelComponent {
       availability: [true, Validators.required],
       colour: ['', Validators.required],
       carTypeId: [null, Validators.required],
-      adminId: [null, Validators.required]
     });
   }
 
@@ -32,8 +44,16 @@ export class AdminPanelComponent {
       return;
     }
 
+
+    console.log(this.carForm.value);
+
+
     const formData = this.carForm.value;
-    this.adminService.addCar(formData.adminId, formData).subscribe({
+
+    formData.carTypeId = Number(formData.carTypeId);
+    formData.adminId = 1;
+
+    this.adminService.addCar(1, formData).subscribe({
       next: () => {
         this.successMessage = 'Car added successfully!';
         this.carForm.reset();
@@ -43,5 +63,8 @@ export class AdminPanelComponent {
         console.error(err);
       }
     });
+    console.log('FORM DATA:', this.carForm.value);
+console.log('TYPE OF carTypeId:', typeof this.carForm.value.carTypeId);
+
   }
 }

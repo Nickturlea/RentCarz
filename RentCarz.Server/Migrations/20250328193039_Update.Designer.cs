@@ -11,8 +11,8 @@ using RentCarz.Server.Data;
 namespace RentCarz.Server.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250328173402_initial")]
-    partial class initial
+    [Migration("20250328193039_Update")]
+    partial class Update
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

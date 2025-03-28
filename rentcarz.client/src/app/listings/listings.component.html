@@ -23,7 +23,7 @@
     </div>
       <!-- Modal for editing car -->
   <div *ngIf="isModalOpen" class="modal-overlay">
-    <div class="modal">
+    <div class="modal" *ngIf="isModalOpen">
       <h2>Edit Car Details</h2>
       <form (ngSubmit)="updateCar()">
         <label>Make:</label>

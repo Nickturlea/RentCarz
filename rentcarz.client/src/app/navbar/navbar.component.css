@@ -75,12 +75,13 @@ html, body {
 
 .btn-admin-panel {
   padding: 8px 15px;
-  background: repeating-linear-gradient( 60deg, yellow 0px, yellow 12px, sandybrown 13px, sandybrown 15px);
-  color: black;
+  background-color: black; 
+  color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
 }
+
 
   .sign-in:hover,
   .logout-btn:hover,

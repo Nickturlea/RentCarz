@@ -66,9 +66,6 @@ button {
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   }
 }
-
-/*styling for modal form*/
-
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -78,32 +75,71 @@ button {
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  padding: 40px 20px;
+  overflow-y: auto;
+  z-index: 1000;
 }
 
 .modal {
   background-color: white;
-  padding: 20px;
-  border-radius: 5px;
-  width: 400px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 25px 20px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 450px;
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+  color: #333;
+  border: 2px solid darkgreen;
+  z-index: 1001;
+  max-height: 90vh; 
+  overflow-y: auto;
 }
 
 .modal h2 {
   margin-top: 0;
+  color: darkgreen;
+  text-align: center;
 }
 
 .modal label {
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 6px;
+  font-weight: bold;
+  color: #333;
 }
 
-.modal input, .modal select {
+.modal input,
+.modal select {
   width: 100%;
-  padding: 8px;
-  margin-bottom: 15px;
+  padding: 12px;
+  margin-bottom: 16px;
+  border: 2px solid darkgreen;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: white;
+  color: #333;
+  box-sizing: border-box;
+}
+
+.modal input:focus,
+.modal select:focus {
+  outline: none;
+  border-color: green;
+  box-shadow: 0 0 5px rgba(0, 128, 0, 0.3);
 }
 
 .modal button {
-  margin-top: 10px;
+  background-color: darkgreen;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-right: 10px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.modal button:hover {
+  background-color: green;
 }

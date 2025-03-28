@@ -38,13 +38,14 @@ namespace RentCarz.Server.Controllers
 
             // Call service to register the member
             var createdUser = await _memberService.RegisterUser(
-                member.Username,
-                member.Password,
-                member.Email,
-                member.Address,
-                member.PhoneNumber,
-                member.FullName
-            );
+         member.Username,
+         member.Password,
+         member.Email,
+         member.FullName,
+         member.PhoneNumber,
+         member.Address
+     );
+
 
             if (createdUser == null)
             {
