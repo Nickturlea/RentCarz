@@ -71,6 +71,54 @@ public async Task<IActionResult> AddCar([FromBody] Car newCar)
         return BadRequest(new { message = ex.Message });
     }
 }
+//update car details endpoint
+[HttpPut("editCar/{carId}")]
+public async Task<IActionResult> EditCar(int carId, [FromBody] Car updatedCar)
+{
+    ModelState.Clear(); // Disable model validation if needed
+
+    if (!ModelState.IsValid)
+    {
+        return BadRequest(ModelState);
+    }
+
+    try
+    {
+        var result = await _adminService.EditCar(carId, updatedCar);
+        if (result == null)
+        {
+            return NotFound(new { message = "Car not found." });
+        }
+
+        return Ok(result);
+    }
+    catch (Exception ex)
+    {
+        return BadRequest(new { message = ex.Message });
+    }
+}
+
+//delete car listing endpoint
+[HttpDelete("deleteCar/{carId}")]
+public async Task<IActionResult> DeleteCar(int carId)
+{
+    try
+    {
+        var success = await _adminService.DeleteCar(carId);
+        if (!success)
+        {
+            return NotFound(new { message = "Car not found." });
+        }
+
+        return NoContent();
+    }
+    catch (Exception ex)
+    {
+        return BadRequest(new { message = ex.Message });
+    }
+}
+
+
 
 
 

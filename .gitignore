@@ -10,3 +10,4 @@ obj/
 .vscode/
 RentCarz.Server/app.db-shm
 RentCarz.Server/app.db-wal
+RentCarz.Server/app.db
