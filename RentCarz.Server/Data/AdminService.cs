@@ -32,19 +32,7 @@ namespace RentCarz.Server.Services
         // add car
         public async Task<Car> AddCar(int adminId, Car newCar)
         {
-/*             //check if the Admin exists
-            var admin = await _context.Admins.FindAsync(adminId);
-            if (admin == null)
-            {
-                throw new Exception("Admin not found.");
-            }
 
-            // Check if the CarType exists
-            var carType = await _context.CarTypes.FindAsync(newCar.CarTypeId);
-            if (carType == null)
-            {
-                throw new Exception("Car type not found.");
-            } */
 
             //assign the admin to the new car
             newCar.AdminId = adminId;
@@ -54,6 +42,44 @@ namespace RentCarz.Server.Services
             await _context.SaveChangesAsync();
             return newCar;
         }
+
+        //update car
+        public async Task<Car?> EditCar(int carId, Car updatedCar)
+        {
+            var existingCar = await _context.Cars.FindAsync(carId);
+            if (existingCar == null)
+            {
+                return null;
+            }
+
+            // Update fields
+            existingCar.Make = updatedCar.Make;
+            existingCar.Model = updatedCar.Model;
+            existingCar.Year = updatedCar.Year;
+            existingCar.Colour = updatedCar.Colour;
+            existingCar.PricePerDay = updatedCar.PricePerDay;
+            existingCar.Availability = updatedCar.Availability;
+            existingCar.CarTypeId = updatedCar.CarTypeId;
+
+            await _context.SaveChangesAsync();
+            return existingCar;
+        }
+
+        //delete car from db
+        public async Task<bool> DeleteCar(int carId)
+        {
+            var car = await _context.Cars.FindAsync(carId);
+            if (car == null)
+            {
+                return false;
+            }
+
+            _context.Cars.Remove(car);
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
+
 
         //get all cars added by an admin
         public async Task<List<Car>> GetCarsByAdmin(int adminId)
