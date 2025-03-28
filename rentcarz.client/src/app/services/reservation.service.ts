@@ -34,8 +34,13 @@ export class ReservationService {
     return this.http.post<Reservation>(`${this.apiUrl}/deleteReservation`, id);
   }
 
-  addPaymentMethod(Payment : { ReservationId: number; CardNumber: string; Month: number; Year: number; CVV: number; FirstName: string; 
-    LastName: string; Country: string; City: string; Zipcode: string; Email: string; PhoneNumber: string }): Observable<Payment>{
+  addPaymentMethod(Payment : { reservationId: number; cardNumber: string; month: number; year: number; cVV: number; firstName: string; 
+    lastName: string; country: string; city: string; zipcode: string; email: string; phoneNumber: string }): Observable<Payment>{
     return this.http.post<Payment>(`${this.apiUrl}/payment`, Payment)
+  }
+
+  checkPaymentMethod(Payment : { ReservationId: number; CardNumber: string; Month: number; Year: number; CVV: number; FirstName: string; 
+    LastName: string; Country: string; City: string; Zipcode: string; Email: string; PhoneNumber: string }): Observable<Payment>{
+    return this.http.post<Payment>(`${this.apiUrl}/checkPay`, Payment)
   }
 }

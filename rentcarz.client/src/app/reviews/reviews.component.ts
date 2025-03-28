@@ -27,7 +27,8 @@ constructor(private reviewService: ReviewService, private authService: AuthServi
       rating: [''],
       comment: [''],
     });
-    this.year = new Date().toISOString().split('T')[0];
+    var local = new Date().toLocaleString("en-US", {timeZone: "America/New_York", year: "numeric", month: "2-digit", day: "2-digit"});
+    this.year = new Date(local).toISOString().split('T')[0];
   } 
 
 
@@ -51,7 +52,6 @@ getReviews(): void{
 }
 
 getMemberList():void{
-  console.log("getusers");
   this.reviewService.getUsers().subscribe({
     next: (data: any) => this.members = data,
     error: (err: any) => this.errorMessage = 'Failed to load reviews. Please try again later: ' + err
@@ -62,6 +62,19 @@ userReviewed():void{
   this.reviewService.hasReviewed(Number(this.userId)).subscribe({
     next: (data: any) => this.isReviwed = data,
     error: (err: any) => this.errorMessage = 'Failed to load reviews. Please try again later: ' + err
+  });
+}
+
+deleteReview():void{
+  this.reviewService.deleteReview(Number(this.userId)).subscribe({
+    next: (response) => {
+      console.log('Delete successful', response);
+      window.location.reload();
+    },
+    error: (error) => {
+      console.error('Delete failed', error);
+      this.errorMessage = error.error?.message || "Delete failed. Please try again.";
+    }
   });
 }
 

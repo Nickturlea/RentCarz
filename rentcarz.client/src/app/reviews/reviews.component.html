@@ -1,6 +1,10 @@
 <h2>User Reviews</h2>
 <form [formGroup]="reviewForm" (ngSubmit)="onSubmit()">
 
+    <div *ngIf="isReviwed">
+        <button (click)="deleteReview()">Make a new Review</button>
+    </div>
+
     <div *ngIf="!isReviwed">
         <div class="form-group">
             <label for="rating">Rating: </label>
@@ -24,6 +28,7 @@
         <div *ngFor="let user of members">
             <div *ngIf="user.userId == review.memberId"><p><b>User: </b>{{user.userName}}</p></div>
         </div>
+        <p><b>Rating: </b>{{review.rating}}/5</p>
         <p><b>Reivew:</b> {{review.comment}}</p>
         <p><b>Date:</b> {{review.reviewDate}}</p>
         <br/>

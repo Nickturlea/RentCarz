@@ -76,6 +76,11 @@ public class ReservationService
             Status = 0
         };
 
+        //make car unavailable
+        car.Availability = false;
+        _context.Cars.Update(car);
+        await _context.SaveChangesAsync();
+
         // Save to the database
         _context.Reservations.Add(reservation);
         await _context.SaveChangesAsync();
@@ -116,6 +121,15 @@ public class ReservationService
     {
         //get the reservatoin
         var reservation = await _context.Reservations.FindAsync(id);
+
+        //get the car to make it available again
+        var car = await _context.Cars.FindAsync(reservation.CarId);
+        
+        car.Availability = true;
+
+        // Save to the database
+        _context.Cars.Update(car);
+        await _context.SaveChangesAsync();
 
         //delete the reservation and save changes
         _context.Reservations.Remove(reservation);

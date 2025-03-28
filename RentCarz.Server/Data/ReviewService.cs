@@ -13,14 +13,15 @@ public class ReviewService
 
 
     // Update Review
-    public async Task<Review> updateReview(int MemberId, int Rating, string Comment, DateTime ReviewDate)
+    public async Task<Review> deleteReview(int id)
     {
-        /*
-        var res = await _context.Reservations.FindAsync(ReservationId);
-        res.Status = Reservation.ReservationStatus.Confirmed;
-        // Save to the database
-        _context.Reservations.Update(res);
-        await _context.SaveChangesAsync();*/
+        //get the review
+        var review = await _context.Reviews
+            .Where(c => c.MemberId == id).FirstOrDefaultAsync();
+
+        //delete the reservation and save changes
+        _context.Reviews.Remove(review);
+        await _context.SaveChangesAsync();
 
         return null;
     }
@@ -69,10 +70,9 @@ public class ReviewService
     public async Task<bool> hasReviewed(int id)
     {
         var hasReviewed = await _context.Reviews
-            .Where(c => c.MemberId == id)
-            .ToListAsync();
+            .Where(c => c.MemberId == id).FirstOrDefaultAsync();
 
-            if(hasReviewed==null){
+            if(hasReviewed == null){
                 return false;
             }
             else{
