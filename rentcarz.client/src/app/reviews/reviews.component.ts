@@ -81,8 +81,7 @@ deleteReview():void{
 
  onSubmit(){
   var user = Number(this.userId);
-  var date = this.year+'T00:00:00';
-  var today = new Date(date);
+  var today = new Date(this.year);
 
   const reviewData = {
     MemberId : user,

@@ -1,6 +1,5 @@
 
 <div class="listings-container">
-  <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
 
   <div class="listings-grid">
     <h3>Reservations:</h3>
@@ -14,8 +13,8 @@
             <p><b>Car: </b> {{Car.make}} {{Car.model}}</p>
           </div>
         </div>
-        <p><b>Start Date:</b> {{ Reservation.startDate }} </p>
-        <p><b>End Date:</b> {{ Reservation.endDate }}</p>
+        <p><b>Start Date:</b> {{ Reservation.startDate.toString().split('T')[0] }} <b>Start Time: </b>{{ Reservation.startDate.toString().split('T')[1] }}</p>
+        <p><b>End Date:</b> {{ Reservation.endDate.toString().split('T')[0] }} <b>End Time: </b>{{ Reservation.startDate.toString().split('T')[1] }}</p>
         <button (click)="removeReservations(Reservation.reservationId)">Remove Reservation</button>
       </div>
     </div>

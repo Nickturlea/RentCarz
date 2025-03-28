@@ -19,5 +19,12 @@ public class CarController : ControllerBase
         return Ok(cars);
     }
 
+    // GET: api/cars/all-cars
+    [HttpGet("all-cars")]
+    public async Task<IActionResult> GetAllCars()
+    {
+        var cars = await _carService.GetAllCars();
+        return Ok(cars);
+    }
 }
 

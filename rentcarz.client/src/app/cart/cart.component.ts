@@ -47,7 +47,7 @@ export class CartComponent implements OnInit {
   }
 
   loadCars(): void {
-    this.carService.getAvailableCars().subscribe({
+    this.carService.getAllCars().subscribe({
       next: (data: any) => this.cars = data,
       error: (err: any) => this.errorMessage = 'Failed to load cars. Please try again later.'
     });
@@ -95,7 +95,6 @@ export class CartComponent implements OnInit {
       PhoneNumber: this.paymentForm.value.tel
     }
     
-    console.log("checking payment");
     console.log(checkPay);
     this.reservationService.checkPaymentMethod(checkPay).subscribe({
       next: (response) => {
@@ -108,7 +107,6 @@ export class CartComponent implements OnInit {
     });
 
     if (checkoutValid) {
-      console.log("adding payment");
       //not a fan of this would rather send arraylist of objects instead. But keep getting errors.
       for (var i = 0; i < this.reservations.length; i++) {
 
