@@ -30,7 +30,7 @@
         </div>
         <p><b>Rating: </b>{{review.rating}}/5</p>
         <p><b>Reivew:</b> {{review.comment}}</p>
-        <p><b>Date:</b> {{review.reviewDate}}</p>
+        <p><b>Date:</b> {{ review.reviewDate.toString().split('T')[0] }}</p>
         <br/>
         <br/>
     </div>

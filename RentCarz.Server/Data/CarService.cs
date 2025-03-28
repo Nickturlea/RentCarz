@@ -19,6 +19,12 @@ public class CarService
             .ToListAsync();
     }
 
+    // Get all cars
+    public async Task<List<Car>> GetAllCars()
+    {
+        return await _context.Cars.ToListAsync();
+    }
+
 
     /*temp until reservation service works
     // Get one car

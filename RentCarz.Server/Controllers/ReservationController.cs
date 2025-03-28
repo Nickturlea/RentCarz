@@ -123,10 +123,12 @@ namespace RentCarz.Server.Controllers
         {
 
             Regex checkCard = new Regex("^[1-9]{16}$");
-            Regex checkMonth = new Regex("^[0-9]{2}$");
             Regex checkYear = new Regex("^[0-9]{4}$");
+            Regex checkPhone = new Regex("^[0-9]{10}$");
+            Regex checkZip = new Regex("[A-Za-z][0-9]+[A-Za-z][0-9]+[A-Za-z][0-9]+");
 
-            DateTime today = new DateTime();
+            var year = DateTime.Now.ToString("yyyy");
+            var month = DateTime.Now.ToString("MM");
 
 
             if (
@@ -150,15 +152,27 @@ namespace RentCarz.Server.Controllers
                 return BadRequest(new { message = "Invalid email." });
             }
 
-            /*if(!checkMonth.IsMatch(data.Month)){
-                return BadRequest(new { message = "Month invalid. Make sure to have month as MM." });
+            if(data.Month<1||data.Month>12){
+                return BadRequest(new { message = "Month invalid." });
             }
 
-            if(!checkYear.IsMatch(data.Year)){
+            if(!checkYear.IsMatch(data.Year.ToString())){
                 return BadRequest(new { message = "Year invalid. Make sure to have as YYYY" });
-            }*/
+            }
 
-            
+            if(data.Year<int.Parse(year) || (data.Year == int.Parse(year) && data.Month <= int.Parse(month))){
+                
+                return BadRequest(new { message = "Card is expired" });
+            }
+
+            if(!checkPhone.IsMatch(data.PhoneNumber)){
+                return BadRequest(new { message = "Phone number should be 10 digits long without spaces, dashes or brackets." });
+            }
+
+            if(!checkZip.IsMatch(data.ZipCode)){
+                return BadRequest(new { message = "Zip code invalid. Format without spaces in format A1A1A1" });
+            }
+
             if(!checkCard.IsMatch(data.CardNumber)){
                 return BadRequest(new { message = "Card number should be 16 digits long." });
             }

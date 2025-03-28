@@ -15,4 +15,9 @@ export class CarService {
   getAvailableCars(): Observable<Car[]> {
     return this.http.get<Car[]>(`${this.apiUrl}/available-cars`);
   }
+
+  // Fetch all cars from API
+  getAllCars(): Observable<Car[]> {
+    return this.http.get<Car[]>(`${this.apiUrl}/all-cars`);
+  }
 }
