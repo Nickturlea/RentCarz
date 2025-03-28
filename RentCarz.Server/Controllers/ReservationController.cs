@@ -130,7 +130,7 @@ namespace RentCarz.Server.Controllers
                 return BadRequest(new { message = "All fields are required for payment." });
             }
 
-            if(!IsValidEmail(data.email)){
+            if(!IsValidEmail(data.Email)){
                 return BadRequest(new { message = "Invalid email." });
             }
             
