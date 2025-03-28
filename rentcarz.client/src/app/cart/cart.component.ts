@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
@@ -6,14 +6,10 @@ import { Reservation } from '../models/reservation.model';
 import { ReservationService } from '../services/reservation.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
-=======
-import { Component } from '@angular/core';
->>>>>>> css
 
 @Component({
   selector: 'app-cart',
   standalone: false,
-<<<<<<< HEAD
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.css'
 })
@@ -134,12 +130,4 @@ export class CartComponent implements OnInit {
     var userId = this.authService.getUserId();
     return Number(userId);
   }
-=======
-  
-  templateUrl: './cart.component.html',
-  styleUrl: './cart.component.css'
-})
-export class CartComponent {
-
->>>>>>> css
 }

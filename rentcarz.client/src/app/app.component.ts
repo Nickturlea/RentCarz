@@ -7,18 +7,13 @@ import { AuthService } from './services/auth.service';
   selector: 'app-root',
   standalone: false,
   template: `
-<<<<<<< HEAD
-    <app-get-started *ngIf="showNavbar"></app-get-started> <!-- Show navbar if showNavbar is true -->
-=======
     <app-navbar></app-navbar>
->>>>>>> css
     <router-outlet></router-outlet>
   `,
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) { }
-
 
   ngOnInit() {
     const token = this.authService.getToken();
@@ -28,6 +23,5 @@ export class AppComponent implements OnInit {
     } else {
       console.log("No token found, not starting refresh.");
     }
-
   }
 }
