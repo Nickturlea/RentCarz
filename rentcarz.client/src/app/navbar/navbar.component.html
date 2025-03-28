@@ -8,6 +8,8 @@
     <a routerLink="/listings">Car Listings</a>
     <a routerLink="/about">About</a>
     <a routerLink="/contact">Contact</a>
+    <a *ngIf="authService.getToken()" routerLink="/cart">Cart</a>
+    <a *ngIf="authService.getToken()" routerLink="/reviews">Leave a Review</a>
   </div>
 
   <div class="auth-buttons">

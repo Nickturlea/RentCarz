@@ -1,0 +1,99 @@
+.listings-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 30px;
+    font-family: Arial, sans-serif;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+  }
+  
+  h3 {
+    color: darkgreen;
+    margin-bottom: 15px;
+    font-size: 1.4rem;
+    text-align: center;
+  }
+  
+  a {
+    color: green;
+    text-decoration: underline;
+  }
+  
+  .listing-item {
+    background-color: #f7f7f7;
+    border: 2px solid darkgreen;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+  }
+  
+  button {
+    background-color: darkgreen;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    margin-top: 10px;
+    margin-right: 10px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  button:hover {
+    background-color: green;
+  }
+  
+  form {
+    margin-top: 30px;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+  }
+  
+  input {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid darkgreen;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+  }
+  
+  input:focus {
+    outline: none;
+    border-color: green;
+    box-shadow: 0 0 6px rgba(0, 128, 0, 0.3);
+  }
+  
+  .error {
+    color: red;
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin-top: 5px;
+  }
+  
+  @media (max-width: 600px) {
+    .listings-container {
+      padding: 20px;
+    }
+  
+    input {
+      font-size: 0.9rem;
+    }
+  
+    button {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  }
+  
