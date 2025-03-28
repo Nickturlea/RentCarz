@@ -1,4 +1,37 @@
+.about-container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 60px 30px;
+  background-color: white;
+  color: #222;
+  border-radius: 20px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  line-height: 1.7;
+}
 
+  .about-container h1 {
+    text-align: center;
+    font-size: 2.8rem;
+    color: darkgreen;
+    margin-bottom: 30px;
+  }
+
+  .about-container h2 {
+    color: darkgreen;
+    margin-top: 40px;
+    font-size: 1.6rem;
+  }
+
+  .about-container p {
+    font-size: 1.1rem;
+    margin: 15px 0;
+  }
+
+  .about-container ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
 
   .about-container li {
     padding-left: 1.2em;
@@ -26,4 +59,3 @@
       font-size: 1rem;
     }
 }
-
