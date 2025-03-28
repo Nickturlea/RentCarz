@@ -1,0 +1,87 @@
+.listings-container {
+  max-width: 1300px;
+  margin: auto;
+  padding: 60px 30px;
+  background-color: white;
+}
+
+.error {
+  color: red;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.no-cars-message {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #444;
+  margin-bottom: 20px;
+}
+
+.listings-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 30px;
+}
+
+.listing-item {
+  background-color: black;
+  color: white;
+  padding: 25px 20px;
+  border: 2px solid darkgreen;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+  .listing-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0, 128, 0, 0.4);
+  }
+
+  .listing-item h3 {
+    color: darkgreen;
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+    background-color: white;
+  }
+
+.price {
+  color: #ffc107;
+  font-weight: bold;
+}
+
+button {
+  background-color: darkgreen;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 15px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+  button:hover {
+    background-color: green;
+  }
+
+.available {
+  color: #4caf50;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.not-available {
+  color: #ff4d4d;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+  .listings-grid {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+}

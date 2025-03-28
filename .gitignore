@@ -1,0 +1,12 @@
+# Ignore Visual Studio files
+.vs/
+
+# Ignore node_modules
+node_modules/
+dist/
+# Ignore .NET build files
+bin/
+obj/
+.vscode/
+RentCarz.Server/app.db-shm
+RentCarz.Server/app.db-wal

@@ -1,0 +1,118 @@
+.section {
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  padding: 50px 20px 80px;
+}
+
+.card {
+  background-color: black;
+  color: white;
+  padding: 10px 10px;
+  text-align: center;
+  border-radius: 30px;
+  border: 6px solid darkgreen;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  max-width: 900px;
+  width: 100%;
+}
+
+.content h1 {
+  font-size: 3.5rem;
+  margin-bottom: 30px;
+}
+
+.content .highlight {
+  color: darkgreen;
+}
+
+.content p {
+  font-size: 1.4rem;
+  margin-bottom: 40px;
+}
+
+.browse-btn {
+  background-color: white;
+  color: darkgreen;
+  padding: 18px 40px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border: 3px solid darkgreen;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 20px;
+}
+
+  .browse-btn:hover {
+    background-color: darkgreen;
+    color: white;
+    border-color: white;
+  }
+
+.features-section {
+  display: flex;
+  justify-content: center;
+  gap: 80px;
+  padding: 100px 40px;
+  background-color: #f9f9f9;
+  flex-wrap: wrap;
+}
+
+.feature {
+  text-align: center;
+  max-width: 240px;
+  color: black;
+  padding: 20px;
+}
+
+  .feature .icon {
+    font-size: 3rem;
+    margin-bottom: 16px;
+  }
+
+.why-rentcarz {
+  padding: 100px 40px;
+  background: white;
+  text-align: center;
+}
+
+  .why-rentcarz h2 {
+    font-size: 2.4rem;
+    margin-bottom: 50px;
+    color: darkgreen;
+  }
+
+.benefits {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 50px;
+}
+
+.benefit {
+  max-width: 280px;
+  background-color: #f8f8f8;
+  padding: 30px 20px;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+}
+
+
+  .benefit img {
+    height: 60px;
+    margin-bottom: 15px;
+  }
+
+  .benefit h3 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    color: darkgreen;
+  }
+
+  .benefit p {
+    color: #444;
+    font-size: 1rem;
+  }
+
