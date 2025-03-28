@@ -29,11 +29,11 @@ namespace RentCarz.Server.Controllers
             return Ok(data);
         }
 
-        [HttpPost("updateReview")]
-        public async Task<IActionResult> Reserve([FromBody] Review data)
+        [HttpPost("deleteReview")]
+        public async Task<IActionResult> DeleteReview([FromBody] int id)
         {
-
-            return Ok();
+             var review = await _reviewService.deleteReview(id);
+            return Ok(review);
         }
 
         // GET: api/review/getReviews

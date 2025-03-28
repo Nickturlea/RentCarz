@@ -16,6 +16,9 @@
         <label for="endDate">End Date: </label>
         <input type="datetime-local" id="endDate" formControlName="endDate" min="{{today}}T06:00" />
     </div>
+    <p class="error" *ngIf="errorMessage != ''" style="color: red;">
+      {{errorMessage}}
+    </p>
     <br/>
 
 

@@ -3,7 +3,9 @@ import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { Reservation } from '../models/reservation.model';
 import { ReservationService } from '../services/reservation.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Car } from '../models/car.model';
+import { CarService } from '../services/car.service';
 
 
 @Component({
@@ -13,6 +15,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrl: './cart.component.css'
 })
 export class CartComponent implements OnInit {
+  cars: Car[] = [];
   reservations: Reservation[] = []; // Holds the list of reservations
   errorMessage: string = '';
   startDate: String = "";
@@ -21,24 +24,32 @@ export class CartComponent implements OnInit {
   endTime: String = "";
   paymentForm: FormGroup;
 
-  constructor(private reservationService: ReservationService, private authService: AuthService, private fb: FormBuilder, private router: Router) {
+  constructor(private reservationService: ReservationService, private carService: CarService, private authService: AuthService, private fb: FormBuilder, private router: Router) {
     this.paymentForm = this.fb.group({
-      cardNumber: [''],
-      month: [''],
-      year: [''],
-      cvv: [''],
-      firstName: [''],
-      lastName: [''],
-      country: [''],
-      city: [''],
-      zipcode: [''],
-      email: [''],
-      tel: ['']
+      cardNumber: ['', [Validators.required]],
+      month: ['', [Validators.required]],
+      year: ['', [Validators.required]],
+      cvv: ['', [Validators.required]],
+      firstName: ['', [Validators.required]],
+      lastName: ['', [Validators.required]],
+      country: ['', [Validators.required]],
+      city: ['', [Validators.required]],
+      zipcode: ['', [Validators.required]],
+      email: ['', [Validators.required]],
+      tel: ['', [Validators.required]]
     });
   }
 
   ngOnInit(): void {
     this.loadReservations();
+    this.loadCars();
+  }
+
+  loadCars(): void {
+    this.carService.getAvailableCars().subscribe({
+      next: (data: any) => this.cars = data,
+      error: (err: any) => this.errorMessage = 'Failed to load cars. Please try again later.'
+    });
   }
 
   loadReservations(): void {
@@ -66,41 +77,75 @@ export class CartComponent implements OnInit {
     var month = Number(this.paymentForm.value.month);
     var year = Number(this.paymentForm.value.year);
     var cvv = Number(this.paymentForm.value.cvv);
+    var checkoutValid = false;
 
-
-    //not a fan of this would rather send arraylist of objects instead. But keep getting errors.
-    for (var i = 0; i < this.reservations.length; i++) {
-
-      const paymentData = {
-        ReservationId: this.reservations[i].reservationId,
-        CardNumber: this.paymentForm.value.cardNumber,
-        Month: month,
-        Year: year,
-        CVV: cvv,
-        FirstName: this.paymentForm.value.firstName,
-        LastName: this.paymentForm.value.lastName,
-        Country: this.paymentForm.value.country,
-        City: this.paymentForm.value.city,
-        Zipcode: this.paymentForm.value.zipcode,
-        Email: this.paymentForm.value.email,
-        PhoneNumber: this.paymentForm.value.tel
-      }
-
-      this.reservationService.addPaymentMethod(paymentData).subscribe({
-        next: (response) => {
-          console.log('Added payment method', response);
-        },
-        error: (error) => {
-          console.error('Adding payment method failed', error);
-          this.errorMessage = error.error?.message || "Adding payment failed. Please try again.";
-        }
-      });
-
-      this.checkout(i);
+    const checkPay = {
+      ReservationId: this.reservations[0].reservationId,
+      CardNumber: String(this.paymentForm.value.cardNumber),
+      Month: month,
+      Year: year,
+      CVV: cvv,
+      FirstName: this.paymentForm.value.firstName,
+      LastName: this.paymentForm.value.lastName,
+      Country: this.paymentForm.value.country,
+      City: this.paymentForm.value.city,
+      Zipcode: this.paymentForm.value.zipcode,
+      Email: this.paymentForm.value.email,
+      PhoneNumber: this.paymentForm.value.tel
     }
-    this.router.navigate(['/listings']);
+    
+    console.log("checking payment");
+    console.log(checkPay);
+    this.reservationService.checkPaymentMethod(checkPay).subscribe({
+      next: (response) => {
+        checkoutValid = true;
+      },
+      error: (error) => {
+        console.error('Adding payment method failed', error);
+        this.errorMessage = error.error?.message || "Adding payment failed. Please try again.";
+      }
+    });
+
+    if (checkoutValid) {
+      console.log("adding payment");
+      //not a fan of this would rather send arraylist of objects instead. But keep getting errors.
+      for (var i = 0; i < this.reservations.length; i++) {
+
+        const paymentData = {
+          reservationId: this.reservations[i].reservationId,
+          cardNumber: String(this.paymentForm.value.cardNumber),
+          month: month,
+          year: year,
+          cVV: cvv,
+          firstName: this.paymentForm.value.firstName,
+          lastName: this.paymentForm.value.lastName,
+          country: this.paymentForm.value.country,
+          city: this.paymentForm.value.city,
+          zipcode: this.paymentForm.value.zipcode,
+          email: this.paymentForm.value.email,
+          phoneNumber: this.paymentForm.value.tel
+        }
+
+        //adds the payment method to the assosiated reservatoin
+        this.reservationService.addPaymentMethod(paymentData).subscribe({
+          next: (response) => {
+            console.log('Added payment method', response);
+          },
+          error: (error) => {
+            console.error('Adding payment method failed', error);
+            this.errorMessage = error.error?.message || "Adding payment failed. Please try again.";
+          }
+        });
+
+        //Checks out that specific reservation
+        this.checkout(i);
+      }
+      this.router.navigate(['/listings']);
+    }
   }
 
+
+  //sends res to db and changes status
   checkout(resId: number) {
 
     const reservationData = {

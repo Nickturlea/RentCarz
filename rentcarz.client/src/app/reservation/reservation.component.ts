@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ReservationService } from '../services/reservation.service';
 import { Car } from '../models/car.model'; 
@@ -15,16 +15,18 @@ import { AuthService } from '../services/auth.service';
 export class ReservationComponent {
   reservationForm: FormGroup;
   cars: Car[] = []; // Holds the list of cars
-  today: String;
+  today: string;
   errorMessage: string = '';
   userId: string | null = "";
 
 constructor(private reservationService: ReservationService, private authService: AuthService, private fb: FormBuilder, private router: Router) {
     this.reservationForm = this.fb.group({
-      startDate: [''],
-      endDate: [''],
+      startDate: ['', Validators.required],
+      endDate: ['', Validators.required],
     });
-    this.today = new Date().toISOString().split('T')[0];
+    //isostring uses utc timezone
+    var local = new Date().toLocaleString("en-US", {timeZone: "America/New_York", year: "numeric", month: "2-digit", day: "2-digit"});
+    this.today = new Date(local).toISOString().split('T')[0];
   } 
 
 
@@ -60,7 +62,6 @@ getCar(): void {
     EndDate: this.reservationForm.value.endDate,
     Status: 0
   }
-  console.log(reservationData);
 
   this.reservationService.reserve(reservationData).subscribe({
     next: (response) => {
@@ -70,6 +71,7 @@ getCar(): void {
     error: (error) => {
       console.error('Reservation failed', error);
       this.errorMessage = error.error?.message || "Reservation failed. Please try again.";
+      console.log(error.error?.message);
     }
   });
  }

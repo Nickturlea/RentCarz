@@ -14,8 +14,8 @@ export class ReviewService {
 
     constructor(private http: HttpClient) {}
 
-  updateReview(Review : { MemberId: number; Rating: number; Comment: string; ReviewDate: Date }): Observable<Reviews> {
-    return this.http.post<Reviews>(`${this.apiUrl}/updateReview`, Review);
+  deleteReview(id:number): Observable<Reviews> {
+    return this.http.post<Reviews>(`${this.apiUrl}/deleteReview`, id);
   }
 
   addReview(Review : { MemberId: number; Rating: number; Comment: string; ReviewDate: Date }): Observable<Reviews>{
