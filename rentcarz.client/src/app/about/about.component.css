@@ -1,6 +1,29 @@
-ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
+
+
+  .about-container li {
+    padding-left: 1.2em;
+    position: relative;
+    margin-bottom: 12px;
+    font-size: 1.05rem;
   }
-  
+
+
+@media (max-width: 768px) {
+  .about-container {
+    padding: 40px 20px;
+  }
+
+    .about-container h1 {
+      font-size: 2rem;
+    }
+
+    .about-container h2 {
+      font-size: 1.3rem;
+    }
+
+    .about-container p,
+    .about-container li {
+      font-size: 1rem;
+    }
+}
+

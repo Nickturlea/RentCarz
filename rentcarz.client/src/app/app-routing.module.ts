@@ -11,6 +11,7 @@ import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { ReviewsComponent } from './reviews/reviews.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 const routes: Routes = [
   { path: '', component: GetStartedComponent },
@@ -24,7 +25,7 @@ const routes: Routes = [
   { path: 'admin', component: AdminPanelComponent },
   { path: 'admin-login', component: AdminLoginComponent },
   { path: 'reviews', component: ReviewsComponent}
-
+  { path: 'nav', component: NavbarComponent }
 ];
 
 @NgModule({

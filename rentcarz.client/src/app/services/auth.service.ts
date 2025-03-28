@@ -27,6 +27,7 @@ export class AuthService {
       //tap used to allow to store and modify data not in the observable
       tap((response: any) => {
         this.storeTokens({ token: response.token, refreshToken: response.refreshToken, userClass: "member", userId: response.userId});
+
         console.log("Login successful and tokens stored.");
         //used to start token refresh
         this.startTokenRefresh();

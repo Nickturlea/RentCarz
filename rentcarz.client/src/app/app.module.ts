@@ -15,7 +15,11 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
+<<<<<<< HEAD
 import { ReviewsComponent } from './reviews/reviews.component';
+=======
+import { NavbarComponent } from './navbar/navbar.component';
+>>>>>>> css
 
 @NgModule({
   declarations: [
@@ -30,7 +34,11 @@ import { ReviewsComponent } from './reviews/reviews.component';
     AboutComponent,
     ContactComponent,
     AdminLoginComponent,
+<<<<<<< HEAD
     ReviewsComponent,
+=======
+    NavbarComponent,
+>>>>>>> css
   ],
   imports: [
     BrowserModule,

@@ -36,6 +36,7 @@ export class LoginComponent {
         localStorage.setItem('token', response.token); 
         //save refresh token
         localStorage.setItem('refreshToken', response.refreshToken); 
+
         //save user id
         localStorage.setItem('userId', response.userId);
         //redirect to home

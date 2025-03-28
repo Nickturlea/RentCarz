@@ -1,0 +1,18 @@
+<nav class="navbar">
+  <div class="logo">
+    <img src="assets/logo-rentcarz.jpg" alt="Rentcarz Logo">
+  </div>
+
+  <div class="nav-links">
+    <a routerLink="/">Home</a>
+    <a routerLink="/listings">Car Listings</a>
+    <a routerLink="/about">About</a>
+    <a routerLink="/contact">Contact</a>
+  </div>
+
+  <div class="auth-buttons">
+    <button *ngIf="!authService.getToken()" class="sign-in" routerLink="/login">Sign Up / Login</button>
+    <button *ngIf="authService.getUserClass() == 'admin'" class="btn-admin-panel">Admin Panel</button>
+    <button *ngIf="authService.getToken()" (click)="logout()" class="logout-btn">Logout</button>
+  </div>
+</nav>

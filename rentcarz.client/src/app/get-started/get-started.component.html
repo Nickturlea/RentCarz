@@ -1,20 +1,44 @@
-<nav class="navbar">
-  <div class="logo">
-    <img src="assets/logo-rentcarz.jpg" alt="Rentcarz Logo">
+
+<section class="section">
+  <div class="card">
+    <div class="content">
+      <h1>Welcome to <span class="highlight">RentCarz</span></h1>
+      <p>Find the best cars at unbeatable prices</p>
+      <button class="browse-btn" routerLink="/listings">Browse Cars</button>
+    </div>
   </div>
-  <div class="nav-links">
-    <a routerLink="/">Home</a>
-    <a routerLink="/listings">Car Listings</a>
-    <a routerLink="/reviews">Reviews</a>
-    <a href="/about">About</a>
-    <a href="/contact">Contact</a>
+</section>
+
+
+<section class="why-rentcarz">
+  <h2>Why Choose RentCarz?</h2>
+  <div class="benefits">
+    <div class="benefit">
+      <img src="assets/booking.png" alt="Rentcarz Logo">
+      <h3>Book in Minutes</h3>
+      <p>
+        Our user-friendly platform allows you to reserve a vehicle in just a few clicks.
+        No complicated forms or waiting, just search, book, and drive.
+        Whether you're planning ahead or need a car last minute, we've got you covered.
+      </p>
+    </div>
+    <div class="benefit">
+      <img src="assets/dollar.png" alt="Rentcarz Logo">
+      <h3>Competitive Pricing</h3>
+      <p>
+        We believe in fair, transparent pricing with no hidden fees or surprise charges.
+        Enjoy access to premium vehicles at affordable daily and weekly rates.
+      </p>
+    </div>
+    <div class="benefit">
+      <img src="assets/reliability.png" alt="Rentcarz Logo">
+      <h3>Clean & Reliable Cars</h3>
+      <p>
+        Every vehicle in our fleet is routinely serviced, deep-cleaned, and inspected for safety.
+        You can drive with confidence knowing you're in a reliable car that looks and feels brand new.
+        From compact sedans to spacious SUVs, quality is always guaranteed.
+      </p>
+    </div>
   </div>
-  <div class ="cart-button">
-    <button *ngIf="authService.getToken()" class="logout-btn" routerLink="/cart">Cart</button>
-  </div>
-  <div class="auth-buttons">
-    <button *ngIf="!authService.getToken()" class="sign-in" routerLink="/login">Sign Up / Login</button>
-    <button *ngIf="authService.getUserClass() == 'admin'" class="btn-admin-panel">Admin Panel</button>
-    <button *ngIf="authService.getToken()" (click)="logout()" class="logout-btn">Logout</button>
-  </div>
-</nav>
+</section>
+
