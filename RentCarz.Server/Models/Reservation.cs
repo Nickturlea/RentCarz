@@ -14,12 +14,12 @@ namespace RentCarz.Server.Models
         public int MemberId { get; set; }
         /*
         public Member Member { get; set; }*/
-        
+
         [ForeignKey("CarId")]
         public int CarId { get; set; }
         /*
         public Car Car { get; set; }*/
-        
+
 
         [Required]
         public DateTime StartDate { get; set; }

@@ -20,7 +20,7 @@ public class ReservationService
         }
         return car;
     }*/
-    
+
     public async Task<List<Car>> getCarById(int id)
     {
         return await _context.Cars
@@ -47,7 +47,7 @@ public class ReservationService
 
         return res;
     }
-    
+
 
     // Make a reservation
     public async Task<Reservation> MakeReservation(int MemberId, int CarId, DateTime StartDate, DateTime EndDate)
@@ -89,21 +89,21 @@ public class ReservationService
     }
 
     // Add a payment method
-    public async Task<Payment> AddPayment(int ReservationId, string CardNumber, int Month, int Year, int CVV, 
+    public async Task<Payment> AddPayment(int ReservationId, string CardNumber, int Month, int Year, int CVV,
     string FirstName, string LastName, string Country, string City, string ZipCode, string Email, string PhoneNumber)
     {
         // Create the reservation
         var paymentMethod = new Payment
         {
             ReservationId = ReservationId,
-            CardNumber = CardNumber, 
-            Month = Month, 
+            CardNumber = CardNumber,
+            Month = Month,
             Year = Year,
-            CVV = CVV, 
-            FirstName = FirstName, 
-            LastName = LastName, 
-            Country = Country, 
-            City = City, 
+            CVV = CVV,
+            FirstName = FirstName,
+            LastName = LastName,
+            Country = Country,
+            City = City,
             ZipCode = ZipCode,
             Email = Email,
             PhoneNumber = PhoneNumber

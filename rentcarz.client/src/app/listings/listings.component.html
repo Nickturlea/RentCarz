@@ -14,6 +14,47 @@
       <button (click)="passCarId(car.carId)">Reserve Now</button>
       <p *ngIf="car.availability">Available</p>
       <p *ngIf="!car.availability" style="color: red;">Not Available</p>
+
+      <!-- Admin-only actions -->
+      <div *ngIf="isAdmin" class="admin-buttons">
+        <button *ngIf="isAdmin" (click)="startEdit(car)">Edit</button>
+        <button (click)="deleteCar(car.carId)">Delete</button>
+      </div>
+    </div>
+      <!-- Modal for editing car -->
+  <div *ngIf="isModalOpen" class="modal-overlay">
+    <div class="modal" *ngIf="isModalOpen">
+      <h2>Edit Car Details</h2>
+      <form (ngSubmit)="updateCar()">
+        <label>Make:</label>
+        <input [(ngModel)]="selectedCar.make" name="make" required />
+        
+        <label>Model:</label>
+        <input [(ngModel)]="selectedCar.model" name="model" required />
+
+        <label>Year:</label>
+        <input [(ngModel)]="selectedCar.year" name="year" required type="number" />
+
+        <label>Color:</label>
+        <input [(ngModel)]="selectedCar.colour" name="colour" required />
+
+        <label>Price per Day:</label>
+        <input [(ngModel)]="selectedCar.pricePerDay" name="pricePerDay" required type="number" />
+
+        <label>Availability:</label>
+        <select [(ngModel)]="selectedCar.availability" name="availability">
+          <option value="true">Available</option>
+          <option value="false">Not Available</option>
+        </select>
+
+        <div>
+          <button type="submit">Save Changes</button>
+          <button type="button" (click)="closeEditModal()">Cancel</button>
+        </div>
+      </form>
     </div>
   </div>
+  </div>
 </div>
+
+

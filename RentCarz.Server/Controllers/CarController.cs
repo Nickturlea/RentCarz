@@ -18,5 +18,6 @@ public class CarController : ControllerBase
         var cars = await _carService.GetAvailableCars();
         return Ok(cars);
     }
+
 }
 

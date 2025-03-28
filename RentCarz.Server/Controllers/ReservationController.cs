@@ -9,7 +9,6 @@ using System.Globalization;
 
 namespace RentCarz.Server.Controllers
 {
-
     [ApiController]
     [Route("api/reservation")]
     public class ReservationController : ControllerBase
@@ -22,17 +21,6 @@ namespace RentCarz.Server.Controllers
             _reservationService = reservationService;
             _context = context;
         }
-
-
-        /* issues parsing as car instead of list of cars
-        // GET: api/reservation/carById/id
-        [HttpGet("carById/{id}")]
-        public async Task<IActionResult> getCarByID(int id)
-        {
-            var car = await _carService.GetCarByID(id);
-            return Ok(car);
-        }*/
-
 
         // GET: api/reservation/carById/id
         [HttpGet("carById/{id}")]
@@ -53,7 +41,6 @@ namespace RentCarz.Server.Controllers
         [HttpPost("checkout")]
         public async Task<IActionResult> Checkout([FromBody] Reservation data)
         {
-
             var reservation = await _reservationService.Checkout(data.ReservationId, data.MemberId, data.CarId, data.StartDate, data.EndDate);
 
             if (reservation == null)
@@ -158,9 +145,7 @@ namespace RentCarz.Server.Controllers
         [HttpPost("deleteReservation")]
         public async Task<IActionResult> Delete([FromBody] int id)
         {
-
             var reservation = await _reservationService.DeleteReservation(id);
-
             return Ok(reservation);
         }
 
@@ -211,5 +196,4 @@ namespace RentCarz.Server.Controllers
         }
 
     }
-
 }

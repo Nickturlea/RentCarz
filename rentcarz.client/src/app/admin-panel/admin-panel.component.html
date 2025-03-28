@@ -23,12 +23,14 @@
       <label>Colour:</label>
       <input type="text" formControlName="colour" required>
   
-      <label>Car Type ID:</label>
-      <input type="number" formControlName="carTypeId" required>
-  
-      <label>Admin ID:</label>
-      <input type="number" formControlName="adminId" required>
-  
+      <label>Car Type:</label>
+      <select formControlName="carTypeId" required>
+        <option [ngValue]="null" disabled>Select Car Type</option>
+        <option *ngFor="let type of carTypes" [ngValue]="type.id">{{ type.name }}</option>
+      </select>
+      
+      
+
       <button type="submit" [disabled]="carForm.invalid">Add Car</button>
     </form>
   

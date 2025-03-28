@@ -1,151 +1,145 @@
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: black;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+
 .login-container {
-    max-width: 400px;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: #003300; .login-container {
-        max-width: 400px;
-        margin: 50px auto;
-        padding: 20px;
-        background-color: #003300; /* Dark green */
-        color: white;
-        border-radius: 10px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-      
-      .form-group {
-        width: 100%;
-        text-align: left;
-      }
-      
-      label {
-        font-weight: bold;
-        display: block;
-      }
-      
-      input {
-        width: 100%;
-        padding: 8px;
-        margin-top: 5px;
-        border: 1px solid black;
-        border-radius: 5px;
-        box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
-      }
-      
-      button {
-        width: 100%;
-        padding: 10px;
-        background-color: black;
-        color: white;
-        font-size: 18px;
-        font-weight: bold;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s ease-in-out;
-      }
-      
-      button:hover {
-        background-color: white;
-        color: black;
-      }
-      
-      button:disabled {
-        background-color: gray;
-        cursor: not-allowed;
-      }
-      
-      .error {
-        color: red;
-        font-size: 14px;
-        margin-top: 5px;
-      }
-      
-      .signup-link {
-        text-align: center;
-        margin-top: 10px;
-      }
-      
-      .signup-link a {
-        color: white;
-        font-weight: bold;
-        text-decoration: underline;
-      }
-      
-      .signup-link a:hover {
-        color: lightgray;
-      }
-      
-    color: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  width: 100%;
+  max-width: 450px;
+  background-color: white;
+  padding: 40px 30px;
+  border-radius: 16px;
+  border: 2px solid darkgreen;
+  box-shadow: 0 0 30px rgba(0, 128, 0, 0.3);
+  text-align: center;
+}
+
+
+  .login-container h2 {
+    font-size: 2.4rem;
+    color: darkgreen;
+    margin-bottom: 30px;
   }
-  
-  .form-group {
-    width: 100%;
-    text-align: left;
-  }
-  
-  label {
-    font-weight: bold;
+
+
+.form-group {
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+  .form-group label {
     display: block;
-  }
-  
-  input {
-    width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-    border: 1px solid black;
-    border-radius: 5px;
-    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
-  }
-  
-  button {
-    width: 100%;
-    padding: 10px;
-    background-color: black;
-    color: white;
-    font-size: 18px;
     font-weight: bold;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
+    margin-bottom: 8px;
+    color: #222;
   }
-  
-  button:hover {
-    background-color: white;
-    color: black;
-  }
-  
-  button:disabled {
-    background-color: gray;
-    cursor: not-allowed;
-  }
-  
-  .error {
-    color: red;
-    font-size: 14px;
-    margin-top: 5px;
-  }
-  
-  .signup-link {
+
+  .form-group input {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+    padding: 12px;
+    border: 2px solid darkgreen;
+    border-radius: 8px;
+    font-size: 1rem;
     text-align: center;
-    margin-top: 10px;
+    outline: none;
+    transition: border-color 0.3s ease;
   }
-  
-  .signup-link a {
+
+    .form-group input:focus {
+      border-color: green;
+      box-shadow: 0 0 5px rgba(0, 128, 0, 0.3);
+    }
+
+
+button[type="submit"] {
+  width: 100%;
+  background-color: darkgreen;
+  color: white;
+  border: none;
+  padding: 14px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-radius: 10px;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+  button[type="submit"]:hover {
+    background-color: green;
+  }
+
+button[disabled] {
+  background-color: #aaa;
+  cursor: not-allowed;
+}
+
+
+.back-btn {
+  margin-top: 25px;
+  background-color: black;
+  color: white;
+  padding: 10px 20px;
+  border: 2px solid darkgreen;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+  .back-btn:hover {
+    background-color: darkgreen;
     color: white;
+  }
+
+.error {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 8px;
+}
+
+.signup-link,
+.admin-login-link {
+  margin-top: 15px;
+  font-size: 0.95rem;
+}
+
+  .signup-link a,
+  .admin-login-link a {
+    color: darkgreen;
+    text-decoration: none;
     font-weight: bold;
-    text-decoration: underline;
   }
-  
-  .signup-link a:hover {
-    color: lightgray;
+
+    .signup-link a:hover,
+    .admin-login-link a:hover {
+      text-decoration: underline;
+    }
+
+
+@media (max-width: 500px) {
+  .login-container {
+    padding: 30px 20px;
   }
-  
+
+    .login-container h2 {
+      font-size: 2rem;
+    }
+}
+

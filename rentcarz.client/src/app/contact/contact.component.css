@@ -1,6 +1,71 @@
-ul {
+.contact-container {
+  max-width: 1000px;
+  margin: 60px auto;
+  align-items: center;
+  padding: 60px 30px;
+  background-color: white;
+  color: #222;
+  border-radius: 20px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  line-height: 1.7;
+}
+
+  .contact-container h1 {
+    text-align: center;
+    font-size: 2.8rem;
+    color: darkgreen;
+    margin-bottom: 30px;
+  }
+
+  .contact-container h2 {
+    color: darkgreen;
+    margin-top: 40px;
+    font-size: 1.6rem;
+  }
+
+  .contact-container p {
+    font-size: 1.1rem;
+    margin: 15px 0;
+  }
+
+  .contact-container a {
+    color: darkgreen;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+    .contact-container a:hover {
+      text-decoration: underline;
+    }
+
+  .contact-container ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
   }
-  
+
+  .contact-container li {
+    padding-left: 0;
+    position: relative;
+    margin-bottom: 12px;
+    font-size: 1.05rem;
+  }
+
+@media (max-width: 768px) {
+  .contact-container {
+    padding: 40px 20px;
+  }
+
+    .contact-container h1 {
+      font-size: 2rem;
+    }
+
+    .contact-container h2 {
+      font-size: 1.3rem;
+    }
+
+    .contact-container p,
+    .contact-container li {
+      font-size: 1rem;
+    }
+}

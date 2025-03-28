@@ -1,43 +1,94 @@
 .admin-panel {
-    max-width: 500px;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: #f9f9f9;
+  max-width: 600px;
+  margin: 60px auto;
+  padding: 40px 30px;
+  background-color: white;
+  color: #222;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  font-family: sans-serif;
+}
+
+.admin-panel h2 {
+  text-align: center;
+  font-size: 2rem;
+  color: darkgreen;
+  margin-bottom: 25px;
+}
+
+label {
+  display: block;
+  margin-top: 15px;
+  font-weight: bold;
+  color: #333;
+}
+
+input,
+select {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 12px;
+  border: 2px solid darkgreen;
+  border-radius: 8px;
+  margin-top: 6px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+  text-align: center;
+  display: block;
+}
+
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: green;
+  box-shadow: 0 0 5px rgba(0, 128, 0, 0.2);
+}
+
+button[type="submit"] {
+  width: 100%;
+  background-color: darkgreen;
+  color: white;
+  border: none;
+  padding: 14px 0;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: green;
+}
+
+.success-message {
+  color: green;
+  margin-top: 15px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.error-message {
+  color: red;
+  margin-top: 15px;
+  font-weight: bold;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .admin-panel {
+    margin: 30px 15px;
+    padding: 30px 20px;
   }
-  
-  label {
-    font-weight: bold;
-    display: block;
-    margin-top: 10px;
+
+  .admin-panel h2 {
+    font-size: 1.6rem;
   }
-  
-  input, select {
-    width: 100%;
-    padding: 8px;
-    margin: 5px 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+
+  input,
+  select {
+    font-size: 0.95rem;
   }
-  
-  button {
-    margin-top: 15px;
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .success-message {
-    color: green;
-    margin-top: 10px;
-  }
-  
-  .error-message {
-    color: red;
-    margin-top: 10px;
-  }
-  
+}
