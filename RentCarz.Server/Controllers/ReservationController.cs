@@ -126,6 +126,9 @@ namespace RentCarz.Server.Controllers
             Regex checkMonth = new Regex("^[0-9]{2}$");
             Regex checkYear = new Regex("^[0-9]{4}$");
 
+            DateTime today = new DateTime();
+
+
             if (
                 string.IsNullOrWhiteSpace(data.CardNumber.ToString()) ||
                 string.IsNullOrWhiteSpace(data.Month.ToString()) ||
@@ -143,11 +146,19 @@ namespace RentCarz.Server.Controllers
                 return BadRequest(new { message = "All fields are required for payment." });
             }
 
-            if(!IsValidEmail(data.email)){
+            if(!IsValidEmail(data.Email)){
                 return BadRequest(new { message = "Invalid email." });
             }
-            
 
+            /*if(!checkMonth.IsMatch(data.Month)){
+                return BadRequest(new { message = "Month invalid. Make sure to have month as MM." });
+            }
+
+            if(!checkYear.IsMatch(data.Year)){
+                return BadRequest(new { message = "Year invalid. Make sure to have as YYYY" });
+            }*/
+
+            
             if(!checkCard.IsMatch(data.CardNumber)){
                 return BadRequest(new { message = "Card number should be 16 digits long." });
             }
