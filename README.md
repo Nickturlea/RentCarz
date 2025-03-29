@@ -17,6 +17,7 @@ Authentication: User authentication and role-based access control, where only ad
 ## Tech Stack
 
 Frontend: Angular, TypeScript
+
 Backend: C# (ASP.NET Core)
 
 Other Tools: JWT authentication, RESTful API for backend communication
