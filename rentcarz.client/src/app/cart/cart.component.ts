@@ -143,7 +143,7 @@ export class CartComponent implements OnInit {
       //Checks out that specific reservation
       this.checkout(i);
     }
-    this.router.navigate(['/listings']);
+    this.router.navigate(['/listings']).then(() => window.location.reload());
 
   }
 
