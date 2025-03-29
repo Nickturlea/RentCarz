@@ -143,6 +143,7 @@ export class CartComponent implements OnInit {
       //Checks out that specific reservation
       this.checkout(i);
     }
+    this.generateAndDownloadReceipt();
     this.router.navigate(['/listings']).then(() => window.location.reload());
 
   }
@@ -176,4 +177,41 @@ export class CartComponent implements OnInit {
     var userId = this.authService.getUserId();
     return Number(userId);
   }
+
+
+  generateAndDownloadReceipt(): void {
+    let receipt = `==== RentCarz Receipt ====\n\n`;
+    receipt += `Date: ${new Date().toLocaleString()}\n\n`;
+    receipt += `Customer: ${this.paymentForm.value.firstName} ${this.paymentForm.value.lastName}\n`;
+    receipt += `Email: ${this.paymentForm.value.email}\n`;
+    receipt += `Phone: ${this.paymentForm.value.tel}\n`;
+    receipt += `Address: ${this.paymentForm.value.city}, ${this.paymentForm.value.country}, ${this.paymentForm.value.zipcode}\n\n`;
+  
+    receipt += `--- Reservations ---\n`;
+  
+    for (let res of this.reservations) {
+      const car = this.cars.find(c => c.carId === res.carId);
+      if (car) {
+        receipt += `Car: ${car.make} ${car.model} (${car.year})\n`;
+        receipt += `Color: ${car.colour}\n`;
+        receipt += `From: ${res.startDate.toString().replace('T', ' ')}\n`;
+        receipt += `To: ${res.endDate.toString().replace('T', ' ')}\n`;
+        receipt += `Price per Day: $${car.pricePerDay}\n`;
+        receipt += `-----------------------------\n`;
+      }
+    }
+  
+    receipt += `\nThank you for booking with RentCarz!`;
+  
+    const blob = new Blob([receipt], { type: 'text/plain' });
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'rentcarz_receipt.txt';
+    link.click();
+    window.URL.revokeObjectURL(url);
+  }
+  
 }
+
+
