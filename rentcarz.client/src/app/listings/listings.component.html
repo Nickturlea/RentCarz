@@ -11,6 +11,7 @@
       <p>Year: {{ car.year }}</p>
       <p>Color: {{ car.colour }}</p>
       <p>Price per Day: ${{ car.pricePerDay }}</p>
+      <p>Type: {{ getCarTypeName(car.carTypeId) }}</p>
       <div *ngIf="authService.getToken()">
         <button (click)="passCarId(car.carId)">Reserve Now</button>
       </div>
@@ -23,40 +24,45 @@
         <button (click)="deleteCar(car.carId)">Delete</button>
       </div>
     </div>
-      <!-- Modal for editing car -->
-  <div *ngIf="isModalOpen" class="modal-overlay">
-    <div class="modal" *ngIf="isModalOpen">
-      <h2>Edit Car Details</h2>
-      <form (ngSubmit)="updateCar()">
-        <label>Make:</label>
-        <input [(ngModel)]="selectedCar.make" name="make" required />
-        
-        <label>Model:</label>
-        <input [(ngModel)]="selectedCar.model" name="model" required />
+    <!-- Modal for editing car -->
+    <div *ngIf="isModalOpen" class="modal-overlay">
+      <div class="modal" *ngIf="isModalOpen">
+        <h2>Edit Car Details</h2>
+        <form (ngSubmit)="updateCar()">
+          <label>Make:</label>
+          <input [(ngModel)]="selectedCar.make" name="make" required />
 
-        <label>Year:</label>
-        <input [(ngModel)]="selectedCar.year" name="year" required type="number" />
+          <label>Model:</label>
+          <input [(ngModel)]="selectedCar.model" name="model" required />
 
-        <label>Color:</label>
-        <input [(ngModel)]="selectedCar.colour" name="colour" required />
+          <label>Year:</label>
+          <input [(ngModel)]="selectedCar.year" name="year" required type="number" />
 
-        <label>Price per Day:</label>
-        <input [(ngModel)]="selectedCar.pricePerDay" name="pricePerDay" required type="number" />
+          <label>Color:</label>
+          <input [(ngModel)]="selectedCar.colour" name="colour" required />
 
-        <label>Availability:</label>
-        <select [(ngModel)]="selectedCar.availability" name="availability">
-          <option value="true">Available</option>
-          <option value="false">Not Available</option>
-        </select>
+          <label>Price per Day:</label>
+          <input [(ngModel)]="selectedCar.pricePerDay" name="pricePerDay" required type="number" />
 
-        <div>
-          <button type="submit">Save Changes</button>
-          <button type="button" (click)="closeEditModal()">Cancel</button>
-        </div>
-      </form>
+          <select [(ngModel)]="selectedCar.carTypeId" name="carType" class="form-control" required>
+            <option *ngFor="let key of carTypeKeys" [value]="getCarTypeValue(key)">
+              {{ key }}
+            </option>
+          </select>
+            
+
+          <label>Availability:</label>
+          <select [(ngModel)]="selectedCar.availability" name="availability">
+            <option value="true">Available</option>
+            <option value="false">Not Available</option>
+          </select>
+
+          <div>
+            <button type="submit">Save Changes</button>
+            <button type="button" (click)="closeEditModal()">Cancel</button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
-  </div>
 </div>
-
-

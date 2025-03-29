@@ -3,6 +3,7 @@ import { CarService } from '../services/car.service';
 import { AdminService } from '../services/admin.service';
 import { AuthService } from '../services/auth.service';
 import { Car } from '../models/car.model'; 
+import { CarType } from '../models/cartype.enum';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,6 +12,8 @@ import { Router } from '@angular/router';
   templateUrl: './listings.component.html',
   styleUrls: ['./listings.component.css']
 })
+
+
 export class ListingsComponent implements OnInit {
   cars: Car[] = [];
   errorMessage: string = '';
@@ -19,7 +22,8 @@ export class ListingsComponent implements OnInit {
   editingCar: Car | null = null;
   isModalOpen: boolean = false;
 
-
+carTypeEnum = CarType;
+carTypeKeys!: string[];
 
 
   constructor(
@@ -34,6 +38,16 @@ export class ListingsComponent implements OnInit {
   ngOnInit(): void {
     this.loadCars();
     this.isAdmin = this.authService.isAdmin();
+    this.carTypeKeys = Object.keys(CarType).filter(key => isNaN(Number(key)));
+  }
+
+  getCarTypeValue(key: string): number {
+    return this.carTypeEnum[key as keyof typeof CarType] as number;
+  }
+
+
+  getCarTypeName(id: number): string {
+    return this.carTypeEnum[id];
   }
 
   loadCars(): void {
